@@ -1,0 +1,1 @@
+Yes, subarray exists with sum 0
