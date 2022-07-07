@@ -1,2 +1,0 @@
-Max is: 3000
-Min is: 1
