@@ -7,8 +7,8 @@ string isSubset(vector<int> &a1, vector<int> &a2, int m, int n) {
     
     if(m < n) return "No";
     
-    int i = 0; // pointer of a1.
-    int j = 0; // pointer of a2.
+    int i = 0; // pointer of a2.
+    int j = 0; // pointer of a1.
     
     while(i < n && j < m) {
         if(a2[i] > a1[j])
