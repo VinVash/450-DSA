@@ -1,0 +1,1 @@
+Yes, triplet with sum 13 is present
