@@ -20,14 +20,14 @@ int binaryMedian(vector<vector<int>> &matrix, int r, int c) {
 		// calculate mid
 		int mid = (min + max) / 2;
 		// initialise place to 0.
-		int place = 0;
+		int current = 0;
 
 		// Find count of elements smaller than or equal to mid by for loop.
 		for(int i = 0; i < r; i++)
-			place += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+			current += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
 
-		// If place is less then desired, then median is present in second half.
-		if(place < desired)
+		// If current count is less then desired, then median is present in second half.
+		if(current < desired)
 			min = mid + 1;
 		// else it is present in first half.
 		else
