@@ -8,9 +8,9 @@ int main() {
     freopen("output.txt", "w", stdout);
 	#endif
 
-    string s = "V";
+    string s = "Vin";
 
-    cout << s.substr(1) << endl;
+    cout << s.substr(2) << endl;
 
 	return 0;
 }
