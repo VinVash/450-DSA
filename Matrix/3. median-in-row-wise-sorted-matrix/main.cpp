@@ -23,8 +23,10 @@ int binaryMedian(vector<vector<int>> &matrix, int r, int c) {
 		int current = 0;
 
 		// Find count of elements smaller than or equal to mid by for loop.
-		for(int i = 0; i < r; i++)
+		for(int i = 0; i < r; i++) {
 			current += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+			cout << current << endl;
+		}
 
 		// If current count is less then desired, then median is present in second half.
 		if(current < desired)

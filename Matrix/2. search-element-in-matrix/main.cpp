@@ -31,7 +31,7 @@ bool searchMatrix(vector<vector<int>> &matrix, int target) {
 	int c1 = 0, c2 = c-1;
 	// mid is already defined.
 
-	while(c1 < c2) {
+	while(c1 <= c2) {
 		mid = (c1 + c2)/2;
 
 		// shorten the search space to the second half if mid is less than the target.
