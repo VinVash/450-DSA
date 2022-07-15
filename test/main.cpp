@@ -10,7 +10,7 @@ int main() {
 
     string s = "Vin";
 
-    cout << s.substr(2) << endl;
+    cout << s.substr(0, 1) << endl;
 
 	return 0;
 }
