@@ -8,7 +8,7 @@ bool findPair(vector<int> &arr, int size, int n) {
 
 	while(l <= r && r < size) {
 		int diff = arr[r] - arr[l];
-		if(diff == n && l != r) // since we need distince elements in the pair.
+		if(diff == n && l != r) // since we need distinct elements in the pair.
 			return true;
 		else if(diff > n) // try to reduce the difference.
 			l++;

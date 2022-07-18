@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// This is O(n^2) function.
 vector<vector<int>> threeSum(vector<int>& nums, int target) {
     vector<vector<int>> ans;
     sort(nums.begin(),nums.end());

@@ -36,7 +36,7 @@ int internalSearch(string needle, int row, int col, string hay[], int row_max, i
 	return found;
 }
 
-int searchString(string needle, int row, int col, string str[], int row_count, int col_count) {
+int searchString(string needle, string str[], int row_count, int col_count) {
 	int found = 0;
 	int r, c;
 
@@ -69,7 +69,7 @@ int main() {
 	for (i = 0; i < ARRAY_SIZE(input); ++i)
 		str[i] = input[i];
 
-	cout << "count: " << searchString(needle, 0, 0, str, ARRAY_SIZE(str), str[0].size()) << endl;
+	cout << "count: " << searchString(needle, str, ARRAY_SIZE(str), str[0].size()) << endl;
 	return 0;
 }
 
