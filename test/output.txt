@@ -1,1 +1,10 @@
-V
+5
+Inside function foo
+5
+5
+9
+
+6
+Inside function foo
+6
+7
