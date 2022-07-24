@@ -13,10 +13,12 @@ node* mirrorTree(node *root) {
 	if(root == NULL)
 		return root;
 
+	// swap the left and right subtrees.
 	node *t = root->left;
 	node->left = root->right;
 	root->right = t;
 
+	// recursively swap the left and right subtrees.
 	if(root->left)
 		mirrorTree(root->left);
 	if(root->right)

@@ -1,35 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void foo(int *num) {
-    cout << "Inside function foo" << endl;
-    // num = 8;
-    cout << *num << endl;
+struct Node {
+    int data;
+    Node *left, *right;
+
+    Node(int val) {
+        this->data = val;
+        this->left = this->right = nullptr;
+    }
+};
+
+void diagonalTraversal(Node *root) {
+    if(!root) return;
+
+    queue<Node *> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        int n = q.size();
+        vector<int> temp;
+
+        for(int i = 0; i < n; i++) {
+            Node *p = q.front();
+            q.pop();
+
+            while(p) {
+                cout << p->data << " ";
+
+                if(p->left)
+                    q.push(p->left);
+
+                p = p->right;
+            }
+        }
+        cout << endl;
+    }
 }
 
 int main() {
 
-	#ifndef ONLINE_JUDGE
+    #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-	#endif
+    #endif
 
-    int a = 5;
-    int *b = &a;
-    cout << *b << endl;
-    foo(b);
-    cout << a << endl;
-    *b = 9;
-    cout << a << endl;
 
-    cout << endl;
-
-    int c = 6;
-    int &d = c;
-    cout << c << endl;
-    foo(&c);
-    c = 7;
-    cout << d << endl;
-
-	return 0;
+    return 0;
 }

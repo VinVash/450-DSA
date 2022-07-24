@@ -20,25 +20,24 @@ void preorder(Node* root) {
 	preorder(root->right);
 }
 
-void preorderIterative(Node *root) {
-	if(root == nullptr)
-		return;
+void preorderIterative(Node *node) {
+    if(root == nullptr)
+        return;
 
-	stack<Node *> stack;
-	stack.push(root);
+    stack<Node *> stk;
+    stk.push(node);
 
-	while(!stack.empty()) {
-		Node *curr = stack.top();
-		stack.pop();
+    while(!stk.empty()) {
+        Node *p = stk.top();
+        stk.pop();
 
-		cout << curr->data << " ";
+        cout << p->data << " ";
 
-		if(curr->right)
-			stack.push(curr->right);
-
-		if(curr->left)
-			stack.push(curr->left);
-	}
+        if(p->right)
+            stk.push(p->right);
+        if(p->left)
+            stk.push(p->left);
+    }
 }
 
 int main() {

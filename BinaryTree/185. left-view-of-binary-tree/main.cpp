@@ -31,30 +31,34 @@ void leftView(Node *root) {
 	leftViewUtil(root, 1, &max_level);
 }
 
-void printLeftView(Node *root) {
-	if(!root)
-		return;
-
-	queue<Node *> q;
-	q.push(root);
-
-	while(q.size()) {
-		int n = q.size();
-
-		for(int i = 1; i <= n; i++) {
-			Node *temp = q.front();
-			q.pop();
-
-			if(i == 1)
-				cout << temp->data << " ";
-
-			if(temp->left)
-				q.push(temp->left);
-
-			if(temp->right)
-				q.push(temp->right);
-		}
-	}
+vector<int> printLeftView(Node *root) {
+    vector<int> res; // output array.
+    
+    if(!root)
+        return res;
+        
+    queue<Node *> q;
+    q.push(root);
+    
+    while(!q.empty()) {
+        int n = q.size();
+        
+        for(int i = 1; i <= n; i++) {
+            Node *p = q.front();
+            q.pop();
+            
+            if(i == 1)
+                res.push_back(p->data);
+                
+            if(p->left)
+                q.push(p->left);
+                
+            if(p->right)
+                q.push(p->right);
+        }
+    }
+    
+    return res;
 }
 
 int main() {

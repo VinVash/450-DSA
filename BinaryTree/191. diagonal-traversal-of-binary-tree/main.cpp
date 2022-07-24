@@ -25,7 +25,7 @@ void diagonalTraversal(Node *root) {
 		int n = q.size();
 		vector<int> ans;
 
-		while(n) {
+		while(n) { // repeat n times.
 			Node *temp = q.front();
 			q.pop();
 

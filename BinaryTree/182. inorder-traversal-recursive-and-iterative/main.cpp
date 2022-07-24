@@ -21,26 +21,24 @@ void inorder(Node *root) {
 	inorder(root->right);
 }
 
-void inorderIterative(Node *root) {
-	if(root == nullptr)
-		return;
-	
-	stack<Node *> stack;
+void inorderIterative(Node *node) {
+    if(node == nullptr)
+        return;
 
-	Node* curr = root;
+    stack<Node *> stk;
+    Node *p = node;
 
-	while(!stack.empty() || curr != nullptr) {
-		if(curr != nullptr) {
-			stack.push(curr);
-			curr = curr->left;
-		} else {
-			curr = stack.top();
-			stack.pop();
-			cout << curr->data << " ";
-
-			curr = curr->right;
-		}
-	}
+    while(p != nullptr || !stk.empty()) {
+        if(p != nullptr) {
+            stk.push(p);
+            p = p->left;
+        } else {
+            p = stk.top();
+            stk.pop();
+            cout << p->data << " ";
+            p = p->right;
+        }
+    }
 }
 
 int main() {

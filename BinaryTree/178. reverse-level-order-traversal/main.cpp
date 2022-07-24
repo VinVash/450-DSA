@@ -3,34 +3,38 @@ void clear(queue<Node *> &q ) {
    std::swap(q, empty);
 }
 
-vector<int> reverseLevelOrder(Node *root) {
+vvector<int> reverseLevelOrder(Node *root) {
     vector<vector<int>> rlot;
     vector<int> temp;
     
     queue<Node *> q;
-    queue<Node *> secondq;
     
     q.push(root);
     
     while(!q.empty()) {
-        while(!q.empty()) {
-            temp.push_back(q.front()->data);
+        int n = q.size();
+        
+        while(n) {
             Node *p = q.front();
             q.pop();
+            
+            temp.push_back(p->data);
+            
             if(p->left)
-                secondq.push(p->left);
+                q.push(p->left);
+                
             if(p->right)
-                secondq.push(p->right);
+                q.push(p->right);
+            
+            n--;
         }
-        
         rlot.push_back(temp);
         temp.clear();
-        q = secondq;
-        clear(secondq);
     }
     
-    vector<int> res;
     reverse(rlot.begin(), rlot.end());
+    
+    vector<int> res;
     
     for(auto vec: rlot) {
         for(auto i: vec)

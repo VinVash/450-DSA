@@ -8,6 +8,7 @@ int height(struct node* node) {
     return 1 + max(height(node->left), height(node->right));
 }
 
+// diameter = lheight + rheight + 1.
 int diameter(struct node* tree) {
     // base case where tree is empty
     if (tree == NULL)

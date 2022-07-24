@@ -15,39 +15,45 @@ Node* newNode(int key) {
     return node;
 }
 
-void topView(Node *root) {
-	if(root == nullptr)
-		return;
+vector<int> topView(Node *root) {
+    vector<int> res; // output array.
+    
+    if(!root)
+        return res;
+        
+    queue<Node *> q;
+    queue<int> hdq; // horizontal distance queue, stores the hd of corresponding nodes in q.
+    map<int, int> m;
+    int hd = 0; // initialise hd of root as 0.
+    
+    q.push(root);
+    hdq.push(hd);
+    
+    while(!q.empty()) {
+        hd = hdq.front();
+        hdq.pop();
+        
+        if(m.count(hd) == 0) // if it is already non-zero, then it has already the node which is visible from top.
+            m[hd] = root->data;
 
-	queue<Node *> q;
-	map<int, int> m;
-	int hd = 0;
-	root->hd = hd;
-
-	q.push(root);
-
-	while(q.size()) {
-		hd = root->hd;
-
-		if(m.count(hd) == 0)
-			m[hd] = root->data;
-		if(root->left) {
-			root->left->hd = hd-1;
-			q.push(root->left);
-		}
-
-		if(root->right) {
-			root->right->hd = hd+1;
-			q.push(root->right);
-		}
-
-		q.pop();
-		root = q.front();
-	}
-
-	for (auto i = m.begin(); i != m.end(); i++) {
-        cout << i -> second << " ";
+        if(root->left) {
+            q.push(root->left);
+            hdq.push(hd-1);
+        }
+        
+        if(root->right) {
+            q.push(root->right);
+            hdq.push(hd+1);
+        }
+        
+        q.pop();
+        root = q.front();
     }
+    
+    for(auto i = m.begin(); i != m.end(); i++)
+        res.push_back(i->second);
+        
+    return res;
 }
 
 int main() {
