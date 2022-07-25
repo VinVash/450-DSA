@@ -27,8 +27,8 @@ int minSwaps(vector<int> &arr) {
             
             swap(arr, i, h[temp[i]]);
             
-            h[initial] = h[temp[i]];
-            h[temp[i]] = i;
+            h[initial] = h[temp[i]]; // since the position has been changed.
+            h[temp[i]] = i; // changing the swapped out indices.
         }
     }
     
