@@ -16,6 +16,7 @@ struct Node {
 Node *findLCA(Node *node, int n1, int n2) {
 	if(node == nullptr) return nullptr;
 
+	 // the first element to be found is the lca.
 	if(node->data == n1 || node->data == n2)
 		return node;
 
