@@ -56,7 +56,7 @@ int main() {
     for(int i = 0; i < n; i++)
         cin >> arr[i];
 
-    vector<int> aux(n);
+    vector<int> aux(n); // stores the count bits of the elements of arr.
     for (int i = 0; i < n; i++) {
     	aux[i] = countBits(arr[i]);
     }

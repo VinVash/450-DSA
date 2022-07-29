@@ -1,42 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
-    int data;
-    Node *left, *right;
 
-    Node(int val) {
-        this->data = val;
-        this->left = this->right = nullptr;
-    }
-};
-
-void diagonalTraversal(Node *root) {
-    if(!root) return;
-
-    queue<Node *> q;
-    q.push(root);
-
-    while(!q.empty()) {
-        int n = q.size();
-        vector<int> temp;
-
-        for(int i = 0; i < n; i++) {
-            Node *p = q.front();
-            q.pop();
-
-            while(p) {
-                cout << p->data << " ";
-
-                if(p->left)
-                    q.push(p->left);
-
-                p = p->right;
-            }
-        }
-        cout << endl;
-    }
-}
 
 int main() {
 
@@ -45,6 +10,14 @@ int main() {
     freopen("output.txt", "w", stdout);
     #endif
 
+    int n, x;
+    cin >> n >> x;
+    int nums[n];
+    for(int i = 0; i < n; i++)
+        cin >> nums[i];
+
+    cout << first(nums, x, n) << endl;
+    cout << last(nums, x, n) << endl;
 
     return 0;
 }

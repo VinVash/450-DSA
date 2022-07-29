@@ -14,7 +14,7 @@ int minSwaps(vector<int> &arr) {
     
     unordered_map<int, int> h;
     
-    sort(temp.begin(), temp.end());
+    sort(temp.begin(), temp.end()); // sorting the copy of the original arr.
     
     for(int i = 0; i < n; i++) {
         h[arr[i]] = i; // which element was at what position originally.
@@ -25,7 +25,7 @@ int minSwaps(vector<int> &arr) {
             ans++; // swap is required.
             int initial = arr[i];
             
-            swap(arr, i, h[temp[i]]);
+            swap(arr, i, h[temp[i]]); // swap the element with the element that needs to be at this position.
             
             h[initial] = h[temp[i]]; // since the position has been changed.
             h[temp[i]] = i; // changing the swapped out indices.
