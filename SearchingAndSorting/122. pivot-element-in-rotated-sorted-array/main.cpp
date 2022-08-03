@@ -14,9 +14,9 @@ int getPivotElement(vector<int> &arr, int l, int r) {
 	if(m > l && arr[m] < arr[m-1])
 		return m-1;
 	
-	if(arr[l] >= arr[m]) 
+	if(arr[l] >= arr[m]) // the first half is not sorted, hence the pivot is present in the first half.
 		return getPivotElement(arr, l, m-1);
-	else
+	else // the pivot is present in the second half.
 		return getPivotElement(arr, m+1, r);
 }
 
