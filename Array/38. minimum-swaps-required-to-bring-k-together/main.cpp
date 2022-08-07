@@ -7,14 +7,12 @@ int minSwap(vector<int> &arr, int n, int k) {
     for (int i = 0; i < n; ++i)
         if (arr[i] <= k)  count++;
      
-    // Find unwanted elements in current
-    // window of size 'count'
+    // Find unwanted elements in current window of size 'count'
     int bad = 0;
     for (int i = 0; i < count; ++i)
         if (arr[i] > k) bad++;
      
-    // Initialize answer with 'bad' value of
-    // current window
+    // Initialize answer with 'bad' value of current window.
     int ans = bad; // current no. of unwanted elements.
     for (int i = 0, j = count; j < n; ++i, ++j) {
          

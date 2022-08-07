@@ -24,7 +24,7 @@ int findLongestConseqSubseq(vector<int> &arr, int N) {
       temp = 1;
   }
   
-  if(res == 0) res = temp; // since 1 element is always consecutive.
+  if(res == 0) res = 1; // since 1 element is always consecutive.
   
   return res;
 }

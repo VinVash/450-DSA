@@ -20,7 +20,6 @@ bool find3Numbers(vector<int> &A, int n, int X) {
     }
     return false;
 }
-// so this is a comment.
 
 int main() {
 
