@@ -9,10 +9,8 @@ int partition(vector<int> &A) {
  
     // each time we find a negative number, `j` is incremented,
     // and a negative element would be placed before the pivot
-    for (int i = 0; i < n; i++)
-    {
-        if (A[i] < pivot)
-        {
+    for (int i = 0; i < n; i++) {
+        if (A[i] < pivot) {
             swap(A[i], A[j]);
             j++;
         }
@@ -27,12 +25,14 @@ void rearrange(vector<int> &A) {
     // partition a given array such that all positive elements move
     // to the end of the array
     int p = partition(A);
+
+    // p stores the index of the first positive number in the array A.
  
-    // swap alternate negative elements from the next available positive
+    // swap alternate negative elements with the next available positive
     // element till the end of the array is reached, or all negative or
     // positive elements are exhausted.
  
-    for (int i = 0; (p < n && i < p); p++, i += 2) {
+    for (int i = 0; (p < n && i < p); p++, i += 2) { // i += 2 because we need to swap alternative negative elements.
         swap(A[i], A[p]);
     }
 }

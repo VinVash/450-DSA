@@ -2,29 +2,27 @@
 using namespace std;
 
 int solve(vector<vector<int>> &dp, int i, int j, string s) {
-	// Base cases:
-	// initialise dp[i][j] = 0
+	// base cases.
 	dp[i][j] = 0;
-	
-	// if it has already been calculated, return it.
+
+	// step 3.
 	if(dp[i][j] != -1)
 		return dp[i][j];
 
-	if(i == j) // if indices are same, then single char is always a palindrome.
+	if(i == j)
 		return dp[i][j] = 1;
 
 	if(j - i == 1) {
 		if(s[i] == s[j])
 			return dp[i][j] = 1;
 		else
-			return dp[i][j]; // dp[i][j] contains 0.
+			return dp[i][j]; // contains 0.
 	}
 
-	if(s[i] == s[j] && solve(dp, i+1, j-1, s) == 1) {
+	if(s[i] == s[j] && solve(dp, i+1, j-1, s) == 1)
 		return dp[i][j] = 1;
-	} 
-	
-	return dp[i][j]; // dp[i][j] contains 0;
+
+	return dp[i][j];
 }
 
 string longestPalindromicSubstring(string s) {
@@ -55,8 +53,6 @@ int main() {
     freopen("output.txt", "w", stdout);
 	#endif
 
-    string s; cin >> s;
-    cout << longestPalindromicSubstring(s) << endl;
 
 	return 0;
 }

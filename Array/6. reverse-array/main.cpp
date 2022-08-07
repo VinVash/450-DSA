@@ -20,7 +20,7 @@ void recursiveReverse(vector<int> &nums, int start, int end) {
 	nums[start] = nums[end];
 	nums[end] = temp;
 
-	reverseArray(nums, start+1, end-1);
+	recursiveReverse(nums, start+1, end-1);
 }
 
 int main() {

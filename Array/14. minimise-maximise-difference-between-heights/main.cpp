@@ -20,8 +20,6 @@ int getMinDiff(vector<int> &arr, int n, int k) {
 	return res;
 }
 
-
-
 int main() {
 
 	#ifndef ONLINE_JUDGE

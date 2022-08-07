@@ -11,9 +11,7 @@ int minJumps(vector<int> &arr, int n){
     
     int steps = arr[0]; // no. of steps we can still take in the current jump.
     
-    int jump = 1;
-    
-    int i = 1; // currently making our first jump.
+    int jump = 1; // made the 1st jump and currently we are during the 1st jump.
     
     for(i = 1; i < n; i++) {
         if(i == n-1) return jump; // if we have reached the end.
