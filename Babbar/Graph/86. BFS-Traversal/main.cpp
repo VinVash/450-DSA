@@ -22,7 +22,7 @@ void bfs(unordered_map<int, list<int>> &adjList, unordered_map<int, bool> &visit
 		q.pop();
 
 		// store frontNode into ans
-		res.push_back(node);
+		res.push_back(frontNode);
 
 		// traverse all neighbours of frontNode.
 		for(auto i: adjList[frontNode]) {
