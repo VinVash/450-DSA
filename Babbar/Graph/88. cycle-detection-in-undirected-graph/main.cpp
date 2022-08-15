@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// BFS method: maintain a queue.
+// while queue is not empty, pop from queue, check for neigbours of that popped element.
 bool isCyclicBFS(int src, unordered_map<int, bool> &visited, unordered_map<int, list<int>> &adj) {
     unordered_map<int, int> parent;
     parent[src] = -1;
@@ -26,7 +28,7 @@ bool isCyclicBFS(int src, unordered_map<int, bool> &visited, unordered_map<int, 
     return false;
 }
 
-bool isCycleDFS(int node, unordered_map<int, bool> &visited, unordered_map<int, list<int>> &adj) {
+bool isCycleDFS(int node, int parent, unordered_map<int, bool> &visited, unordered_map<int, list<int>> &adj) {
 	visited[node] = true;
 
 	for(auto neighbour: adj[node]) {
