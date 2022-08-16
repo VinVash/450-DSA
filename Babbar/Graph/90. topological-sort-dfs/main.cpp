@@ -10,10 +10,12 @@ void topoSort(int node, vector<bool> &visited, stack<int> &stk, unordered_map<in
 		}
 	}
 
+	// main step in topological ordering.
 	stk.push(node);
 }
 
 vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e) {
+	
 	// create adjlist
 	unordered_map<int, list<int>> adj;
 
