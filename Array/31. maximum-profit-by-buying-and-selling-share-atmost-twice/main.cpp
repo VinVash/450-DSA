@@ -9,7 +9,7 @@ int maxProfit(vector<int> &prices, int n) {
 		if(prices[i] > max_element)
 			max_element = prices[i];
 
-		res[i] = max(res[i+1], max_element-prices[i]);
+		res[i] = max(res[i+1], max_element - prices[i]);
 	}
 
 	int min_element = prices[0];
