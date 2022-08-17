@@ -29,6 +29,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
 		int mini = INT_MAX;
 		int u;
 
+		// find min element from all vertices.
 		for(int v=1; v <= n; v++) { // use priority queue here, for obtaining the lowest element in O(1) time.
 			if(mst[v] == false && key[v] < mini) {
 				u = v;
@@ -36,7 +37,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
 			}
 		}
 
-		// mark min node as true
+		// include the min element in the mst.
 		mst[u] = true;
 
 		// check its adjacent nodes
@@ -44,7 +45,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
 			int v = it.first;
 			int w = it.second;
 
-			if(mst[v] == false && w < key[v]) {
+			if(mst[v] == false && w < key[v]) { // we just need to make sure the key is smaller than the edge weight.
 				parent[v] = true;
 				key[v] = w;
 			}
