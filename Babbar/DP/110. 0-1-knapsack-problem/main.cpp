@@ -111,5 +111,7 @@ int main() {
 	// vector<vector<int>> dp(n, vector<int>(maxWeight + 1, -1));
 	// cout << solveMem(weight, value, n-1, maxWeight, dp) << endl;
 
+	// cout << solveTab(weight, value, n, W) << endl;
+
 	return 0;
 }

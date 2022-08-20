@@ -1,26 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long maxProduct(vector<int> arr, int n) {
-    int pmax, nmax; // denotes the positive and negative maxes at any time.
-    int res; // stores the result.
-    
-    pmax = nmax = arr[0];
-    
-    for(int i=1; i < n; i++) {
-       // arr[i] denotes the current element we are accessing.
-       if(arr[i] > 0) { // positive.
-           pmax = max((long long)arr[i], pmax * (long long)arr[i]);
-           nmax = min((long long)arr[i], nmax * (long long)arr[i]);
-       } else {
-           nmax = min((long long)arr[i], pmax * (long long)arr[i]);
-           pmax = max((long long)arr[i], nmax * (long long)arr[i]);
-       }
-       
-       res = max(pmax, nmax);
+long long int count(int S[], int m, int n) {
+    vector<int> table(n+1, 0);
+
+    table[0] = 1; // only 1 way to make 0 money, i.e., take no coins.
+
+    for(int i = 0; i < m; i++) {
+        for(int j = S[i]; j <= n; j++) {
+            table[j] += table[j - S[i]];
+        }
     }
-    
-    return res;
+
+    return table[n];
 }
 
 int main() {
