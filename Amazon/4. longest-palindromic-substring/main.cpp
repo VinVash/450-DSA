@@ -29,7 +29,7 @@ string longestPalindromicSubstring(string s) {
 	int n = s.size();
 	int start_index = 0, max_len = 0;
 
-	// initialise 2d matrix(nxn) with all elements -1.
+	// initialise 2d matrix (nxn) with all elements -1.
 	vector<vector<int>> dp(n, vector<int>(n, -1));
 
 	for(int i = 0; i < n; i++) {
