@@ -2,7 +2,6 @@
 using namespace std;
 
 int solve(vector<vector<int>> &dp, int i, int j, string s) {
-	// base cases.
 	dp[i][j] = 0;
 
 	// step 3.
