@@ -3,7 +3,7 @@ using namespace std;
 
 int maxHist(vector<int> &row, int c) {
     // Create an empty stack. The stack holds indexes of hist[] array.
-     // The bars stored in stack are always in increasing order of their heights.
+    // The bars stored in stack are always in increasing order of their heights.
     stack<int> result;
  
     int top_val; // Top of stack
