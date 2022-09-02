@@ -35,26 +35,31 @@ int solveMem(int n, int x, int y, int z, vector<int> &dp) {
 	return dp[n];
 }
 
-int solveTab(int n, int x, int y, int z) {
-	vector<int> dp(n+1, -1);
+int solveTab(int l, int p, int q, int r) {
+    vector<int> dp(l+1, -1);
+    dp[0] = 0;
 
-	dp[0] = 0;
+    for (int i = 0; i <= l; i++) {
 
-	for(int i = 1; i <= n; i++) {
-		if(i - x >= 0 && dp[i-x] != -1)
-			dp[i] = max(dp[i], dp[i-x] + 1);
+        // if certain length is not possible
+        if (dp[i] == -1)
+            continue;
 
-		if(i - y >= 0 && dp[i-x] != -1)
-			dp[i] = max(dp[i], dp[i-y] + 1);
+        if (i + p <= l)
+            dp[i + p] = max(dp[i + p], dp[i] + 1);
 
-		if(i - z >= 0 && dp[i-x] != -1)
-			dp[i] = max(dp[i], dp[i-z] + 1);
-	}
+        if (i + q <= l)
+            dp[i + q] = max(dp[i + q], dp[i] + 1);
 
-	if(dp[n] < 0)
-		return 0;
-	else
-		return dp[n];
+        if (i + r <= l)
+            dp[i + r] = max(dp[i + r], dp[i] + 1);
+    }
+
+    if (dp[l] == -1) {
+        dp[l] = 0;
+    }
+    // return value corresponding to length l
+    return dp[l];
 }
 
 int main() {

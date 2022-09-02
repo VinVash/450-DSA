@@ -14,6 +14,9 @@ int solveTab(int n, int k) {
 	return dp[n];
 }
 
+// Recursive relation
+// solve(n) = solve(n-1) * (k-1) + solve(n-2) * (k-1)
+
 int solveTabSO(int n, int k) {
 	int prev2 = k;
 	int prev1 = add(k, mul(k, k-1));
