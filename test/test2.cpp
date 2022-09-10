@@ -1,26 +1,13 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
-
-/*
- * Complete the 'getMinimumOperations' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY items as parameter.
- */
-
-int parity(int a)
-{
+int parity(int a) {
     return a % 2;
 }
 
 // Function to return the minimum
 // number of operations required
-int solve(vector<int> &array, int size)
-{
+int solve(vector<int> &array, int size) {
     int n = size;
     int x1 = 0, x2 = 0;
     vector<int> array2 = array;
@@ -94,19 +81,23 @@ int solve(vector<int> &array, int size)
     return x1 > x2 ? x2 : x1;
 }
 
-int getMinimumOperations(vector<int> items)
-{
+int getMinimumOperations(vector<int> items) {
     return solve(items, items.size());
 }
 
 int main() {
-    
-    #ifndef ONLINE_JUDGE
+
+	#ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-    #endif
+	#endif
 
-    cout << "Hello world" << endl;
+	int n; cin >> n;
+    vector<int> nums(n);
+    for(int i = 0; i < n; i++)
+        cin >> nums[i];
 
-    return 0;
+    cout << getMinimumOperations(nums) << endl;
+
+	return 0;
 }
