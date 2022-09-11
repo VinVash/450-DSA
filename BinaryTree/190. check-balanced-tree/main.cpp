@@ -12,6 +12,7 @@ int height(Node *node) {
         return 1 + max(lDepth, rDepth);
     }
 }
+
 bool isBalanced(Node *root) {
     int lh;
     int rh;

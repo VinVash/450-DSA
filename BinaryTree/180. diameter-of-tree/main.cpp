@@ -1,11 +1,15 @@
-int height(struct node* node) {
-    // base case tree is empty
+int height(Node* node){
     if (node == NULL)
         return 0;
- 
-    // If tree is not empty then height = 1 + max of left
-    // height and right heights
-    return 1 + max(height(node->left), height(node->right));
+    else
+    {
+        /* compute the depth of each subtree */
+        int lDepth = height(node->left);
+        int rDepth = height(node->right);
+     
+        /* use the larger one */
+        return 1 + max(lDepth, rDepth);
+    }
 }
 
 // diameter = lheight + rheight + 1.

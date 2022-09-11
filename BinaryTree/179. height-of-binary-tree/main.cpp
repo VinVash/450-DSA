@@ -8,9 +8,6 @@ int height(Node* node){
         int rDepth = height(node->right);
      
         /* use the larger one */
-        if (lDepth > rDepth)
-            return(lDepth + 1);
-        else
-            return(rDepth + 1);
+        return 1 + max(lDepth, rDepth);
     }
 }
