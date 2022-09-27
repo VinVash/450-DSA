@@ -22,9 +22,9 @@ int getMaxGold(vector<vector<int>> &gold, int m, int n) {
 		for(int row = 0; row < m; row++) {
 			int right = (col == n-1) ? 0 : goldTable[row][col+1];
 
-			int rightUpper = (row == 0 || col == n-1) ? 0 : goldTable[row-1][col+1];
+			int rightUpper = (col == n-1 || row == 0) ? 0 : goldTable[row-1][col+1];
 
-			int rightLower = (row == m-1 || col == n-1) ? 0 : goldTable[row+1][col+1];
+			int rightLower = (col == n-1 || row == m-1) ? 0 : goldTable[row+1][col+1];
 
 			goldTable[row][col] = gold[row][col] + max(right, max(rightUpper, rightLower));
 		}

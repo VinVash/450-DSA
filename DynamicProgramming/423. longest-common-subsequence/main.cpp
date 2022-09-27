@@ -1,29 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int LCS(string a, string b) {
-    int n = a.size(), m = b.size();
-    int dp[n+1][m+1];
+int solveRec(string a, string b, int i, int j) {
+    // base case.
+    if(i == a.size())
+        return 0;
+    if(j == b.size())
+        return 0;
 
-    for(int i = 0; i <= n; i++)
-    	dp[i][0] = 0;
-
-    for(int i = 0; i <= m; i++)
-    	dp[0][i] = 0;
-
-    for(int i=1; i<=n; i++) {
-        for(int j=1; j<=m; j++) {
-            if(i == 0 || j == 0)
-                dp[i][j] = 0;
-            else if(a[i-1] == b[j-1])
-                dp[i][j] = 1+dp[i-1][j-1];
-            else
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
-        }
+    int ans = 0;
+    if(a[i] == b[j]) {
+        ans = 1 + solveRec(a, b, i+1, j+1);
+    } else {
+        ans = max(solveRec(a, b, i+1, j), solveRec(a, b, i, j+1));
     }
-    
-    return dp[n][m];
-    
+
+    return ans;
+}
+
+ int solveMem(string a, string b, int i, int j, vector<vector<int>> &dp) {
+    // base case.
+    if(i == a.size())
+        return 0;
+    if(j == b.size())
+        return 0;
+
+     if(dp[i][j] != -1)
+        return dp[i][j];
+
+    int ans = 0;
+    if(a[i] == b[j]) {
+        ans = 1 + solveMem(a, b, i+1, j+1, dp);
+    } else {
+        ans = max(solveMem(a, b, i+1, j, dp), solveMem(a, b, i, j+1, dp));
+    }
+
+    return dp[i][j] = ans;
+}
+
+int solveTab(string a, string b) {
+    int n = a.size(), m = b.size();
+    vector<vector<int>> dp(n, vector<int>(m, 0));
+
+    vector<int> curr(m+1, 0);
+    vector<int> next(m+1, 0);
+
+    for(int i = n-1; i >= 0; i--) {
+        for(int j = m-1; j >= 0; j--) {
+            int ans = 0;
+            if(a[i] == b[j]) {
+                ans = 1 + next[j+1];
+            } else {
+                ans = max(next[j], curr[j+1]);
+            }
+
+            curr[j] = ans;
+        }
+        next = curr;
+    }
+
+    return next[0];
 }
 
 int main() {
