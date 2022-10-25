@@ -6,10 +6,10 @@ int solveRec(vector<int> &nums, int target) {
 	if(target < 0)
 		return 0;
 	if(target == 0)
-		return 1;
+		return 1; // we found 1 solution
 
 	int ans = 0;
-	for(int i = 0; i < nums.size(); i++) {	
+	for(int i = 0; i < nums.size(); i++) {
 		ans += solveRec(nums, target - nums[i]);
 	}
 
@@ -45,9 +45,8 @@ int solveTab(vector<int> &nums, int target) {
 		int ans = 0;
 		for(int j = 0; j < nums.size(); j++) {
 			if(i - nums[j] >= 0)
-				ans += dp[i - nums[j]];
+				dp[i] += dp[i - nums[j]];
 		}
-		dp[i] = ans;
 	}
 
 	return dp[target];

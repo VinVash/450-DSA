@@ -51,7 +51,7 @@ int solveTab(vector<int> &num, int x) {
 	for(int i = 1; i <= x; i++) {
 		// trying to solve for every amount figure from 1 to x.
 		for(int j = 0; j < num.size(); j++) {
-			if(i - num[j] >= 0 && dp[i - num[j] != INT_MAX]) {
+			if(i - num[j] >= 0 && dp[i - num[j]] != INT_MAX) {
 				dp[i] = min(dp[i], 1 + dp[i - num[j]]);
 			}
 		}

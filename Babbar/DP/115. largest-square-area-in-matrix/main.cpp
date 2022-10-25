@@ -11,7 +11,7 @@ int solveRec(vector<vector<int>> &matrix, int i, int j, int &maxi) {
 	int down = solveRec(matrix, i+1, j, maxi);
 
 	if(matrix[i][j] == 1) {
-		int ans = 1 + min(right, min(diagonal, down));
+		int ans = 1 + min(right, min(diagonal, down)); // kitni side ka square sambhav hai
 		maxi = max(maxi, ans);
 		return ans;
 	} else {

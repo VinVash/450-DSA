@@ -8,7 +8,7 @@ int add(int a, int b) {
 }
 
 int mul(int a, int b) {
-	return ((a % MOD) * (b % MOD)) % MOD;
+	return ((a % MOD)* 1LL * (b % MOD)) % MOD;
 }
 
 
@@ -17,7 +17,7 @@ int solveRec(int n, int k) {
 		return k;
 
 	if(n == 2)
-		return add(k, mul(k, k-1));
+		return add(k, mul(k, k-1)); // base case -> k + k * (k-1)
 
 	int ans = add(mul(solveRec(n-2, k), k-1), mul(solveRec(n-1, k), k-1));
 	return ans;

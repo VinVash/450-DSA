@@ -11,7 +11,7 @@ int solveRec(int n, vector<int> &days, vector<int> &cost, int index) {
 
 	int i = 0;
 	// 7 day pass
-	for(i = index; i < n && days[i] < days[index] + 7; i++);
+	for(i = index; i < n && days[i] < days[index] + 7; i++); // moving to the day till which 7 days are completed.
 	int option2 = cost[1] + solveRec(n, days, cost, i);
 
 	// 30 day pass
