@@ -59,12 +59,15 @@ int main() {
 	vector<int> temp(n);
 	vector<int> arr {2, 4, 1, 3, 5};
 
+    // Array before merge sort.
 	for(int i = 0; i < n; i++)
 		cout << arr[i] << " ";
 	cout << endl;
 
+    // Merge sort.
 	cout << mergeSort(arr, temp, 0, n-1) << endl;
 
+    // Array after merge sort.
 	for(int i = 0; i < arr.size(); i++)
 		cout << arr[i] << " ";
 	cout << endl;
