@@ -1,38 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
-	int data;
-	Node *left, *right;
+struct Node
+{
+    int data;
+    Node *left, *right;
 
-	Node(int data) {
-		this->data = data;
-		this->left = this->right = nullptr;
-	}
+    Node(int data)
+    {
+        this->data = data;
+        this->left = this->right = nullptr;
+    }
 };
 
 // Recursive inorder.
-void inorder(Node *root) {
-	if(root == nullptr)
-		return;
+void inorder(Node *root)
+{
+    if (root == nullptr)
+        return;
 
-	inorder(root->left);
-	cout << root->data << " ";
-	inorder(root->right);
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
 }
 
-void inorderIterative(Node *node) {
-    if(node == nullptr)
+// Iterative inorder.
+void inorderIterative(Node *node)
+{
+    if (node == nullptr)
         return;
 
     stack<Node *> stk;
     Node *p = node;
 
-    while(p != nullptr || !stk.empty()) {
-        if(p != nullptr) {
+    while (p != nullptr || !stk.empty())
+    {
+        if (p != nullptr)
+        {
             stk.push(p);
             p = p->left;
-        } else {
+        }
+        else
+        {
             p = stk.top();
             stk.pop();
             cout << p->data << " ";
@@ -41,14 +50,15 @@ void inorderIterative(Node *node) {
     }
 }
 
-int main() {
+int main()
+{
 
-	#ifndef ONLINE_JUDGE
+#ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-	#endif
+#endif
 
-    Node* root = new Node(1);
+    Node *root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
     root->left->left = new Node(4);
@@ -56,11 +66,11 @@ int main() {
     root->right->right = new Node(6);
     root->right->left->left = new Node(7);
     root->right->left->right = new Node(8);
- 
+
     inorder(root);
     cout << endl;
 
     inorderIterative(root);
 
-	return 0;
+    return 0;
 }

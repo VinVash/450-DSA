@@ -1,0 +1,6 @@
+{
+  "discord.enabled": true,
+  "files.associations": {
+    "vector": "cpp"
+  }
+}

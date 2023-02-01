@@ -1,18 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
+struct Node
+{
 	int data;
 	Node *left, *right;
 
-	Node(int data) {
+	Node(int data)
+	{
 		this->data = data;
 		this->left = this->right = nullptr;
 	}
 };
 
-void postorder(Node *root) {
-	if(root == nullptr)
+void postorder(Node *root)
+{
+	if (root == nullptr)
 		return;
 
 	postorder(root->left);
@@ -20,54 +23,58 @@ void postorder(Node *root) {
 	cout << root->data << " ";
 }
 
-void postorderIterative(Node *root) {
-	if(root == nullptr)
+void postorderIterative(Node *root)
+{
+	if (root == nullptr)
 		return;
 
-	stack<Node *> s;
-	s.push(root);
+	stack<Node *> stk;
+	stk.push(root);
 
 	stack<int> out; // stack to store postorder traversal.
 
-	while(!s.empty()) {
-		Node *curr = s.top();
-		s.pop();
+	while (!stk.empty())
+	{
+		Node *p = stk.top();
+		stk.pop();
 
-		out.push(curr->data);
+		out.push(p->data);
 
-		if(curr->left)
-			s.push(curr->left);
+		if (p->left)
+			stk.push(p->left);
 
-		if(curr->right)
-			s.push(curr->right);
+		if (p->right)
+			stk.push(p->right);
 	}
 
-	while(!out.empty()) {
+	while (!out.empty())
+	{
 		cout << out.top() << " ";
 		out.pop();
 	}
 }
 
-int main() {
+int main()
+{
 
-	#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-	#endif
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
 
-	Node* root = new Node(1);
-    root->left = new Node(2);
-    root->right = new Node(3);
-    root->left->left = new Node(4);
-    root->right->left = new Node(5);
-    root->right->right = new Node(6);
-    root->right->left->left = new Node(7);
-    root->right->left->right = new Node(8);
- 
-    postorder(root);
-    cout << endl;
+	Node *root = new Node(1);
+	root->left = new Node(2);
+	root->right = new Node(3);
+	root->left->left = new Node(4);
+	root->right->left = new Node(5);
+	root->right->right = new Node(6);
+	root->right->left->left = new Node(7);
+	root->right->left->right = new Node(8);
 
-    postorderIterative(root);
+	postorder(root);
+	cout << endl;
+
+	postorderIterative(root);
 
 	return 0;
 }
