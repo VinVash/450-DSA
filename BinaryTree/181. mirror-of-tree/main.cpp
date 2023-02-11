@@ -15,7 +15,7 @@ node* mirrorTree(node *root) {
 
 	// swap the left and right subtrees.
 	node *t = root->left;
-	node->left = root->right;
+	root->left = root->right;
 	root->right = t;
 
 	// recursively swap the left and right subtrees.
