@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+	Topological sort is only applicable on DAGs. (Directed Acyclic Graphs)
+*/
+
 int detectCycleDirected(int n, vector<pair<int, int>> &edges) {
 	unordered_map<int, list<int>> adj;
 
@@ -44,11 +48,49 @@ int detectCycleDirected(int n, vector<pair<int, int>> &edges) {
 		}
 	}
 	
+	// If toposort has exactly n elements, than it is a DAG. If less, than it has a cycle.
 	if(count == n) // valid topological sort. therefore not cyclic.
 		return false;
 	else
 		return true;
 }
+
+/*
+	Alternative solution
+
+	bool isCyclic(int n, vector<int> adj[]) {
+        vector<int> indegree(n);
+        for(int i = 0; i < n; i++) {
+            for(auto j: adj[i])
+                indegree[j]++;
+        }
+        
+        queue<int> q;
+        for(int i = 0; i < n; i++) {
+            if(indegree[i] == 0)
+                q.push(i);
+        }
+        
+        int count = 0;
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+            
+            count++;
+            for(auto adjNode: adj[node]) {
+                indegree[adjNode]--;
+                if(indegree[adjNode] == 0)
+                    q.push(adjNode);
+            }
+        }
+        
+        if(count == n)
+            return false;
+        else
+            return true;
+    }
+
+*/
 
 int main() {
 

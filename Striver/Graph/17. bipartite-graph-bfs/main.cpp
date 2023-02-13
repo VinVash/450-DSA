@@ -2,7 +2,7 @@
 using namespace std;
 
 // colors an individual component.
-bool check(int start, int V, vector<int> adj[], vector<int> &color) {
+bool check(int start, vector<int> adj[], vector<int> &color) {
 	queue<int> q;
 	q.push(start);
 	color[start] = 0;
@@ -30,7 +30,7 @@ bool isBipartite(int V, vector<int> adj[]) {
 
 	for(int i = 0; i < V; i++) {
 		if(color[i] == -1) {
-			if(check(i, V, adj, color) == false)
+			if(check(i, adj, color) == false)
 				return false;
 		}
 	}

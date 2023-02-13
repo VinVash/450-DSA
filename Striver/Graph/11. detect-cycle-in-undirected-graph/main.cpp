@@ -26,10 +26,9 @@ bool detect(int src, vector<int> adj[], int vis[]) {
 }
 
 bool isCycle(int V, vector<int> adj[]) {
-	int vis[V];
-	for(int i = 0; i < V; i++)
-		vis[i] = 0;
-	for(int i = 0; i < V; i++) {
+	int vis[V] = {0};
+	
+	for(int i = 0; i < V; i++) { // for loop to ensure for disconnected components.
 		if(!vis[i]) {
 			if(detect(i, adj, vis))
 				return true;

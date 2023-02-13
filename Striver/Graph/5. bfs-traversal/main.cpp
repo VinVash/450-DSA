@@ -2,6 +2,7 @@
 using namespace std;
 
 // Time complexity: O(N + 2E)
+// while loop runs for O(N) (queue) and the inside for loop runs for total degree.
 vector<int> bfsOfGraph(int v, vector<int> adj[]) {
 	vector<int> vis(v, 0);
 	vis[0] = 1;
