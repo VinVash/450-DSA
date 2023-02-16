@@ -32,6 +32,7 @@ int bellmanFord(int n, int m, int src, int dest, vector<vector<int>> &edges) {
 		return -1;
 }
 
+
 int main() {
 
 	#ifndef ONLINE_JUDGE

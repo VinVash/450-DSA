@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// n nodes and n-1 edges is called a spanning tree.
 // Time: O(N^2) where inner loop is running in array and O(NlogN) where inner loop is using priority queue.
 vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pair<int, int>, int>> &g) {
 

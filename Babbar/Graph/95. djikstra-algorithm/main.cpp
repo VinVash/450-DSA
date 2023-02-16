@@ -14,6 +14,7 @@ vector<int> djikstra(vector<vector<int>> &vec, int vertices, int edges, int sour
 		adj[u].push_back(make_pair(v, w));
 		adj[v].push_back(make_pair(u, w));
 	}
+	// constructed the adjList till here.
 
 	// make dist. array initialised with infinite value
 	vector<int> dist(vertices, INT_MAX);
