@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Declare target and ans variable globally.
+
 int target;
 
 vector<vector<int>> ans;

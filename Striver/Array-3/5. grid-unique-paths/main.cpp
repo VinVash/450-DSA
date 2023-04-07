@@ -22,6 +22,11 @@ public:
         
         return dp[x][y] = solveMem(x+1, y, m, n, dp) + solveMem(x, y+1, m, n, dp);
     }
+
+    int solveTab(int m, int n) {
+        vector<vector<int>> dp(m+1, vector<int>(n+1, 0));
+
+    }
     
     int uniquePaths(int m, int n) {
         
@@ -32,7 +37,7 @@ public:
         
         // int ans = solveTab(m, n);
         
-        int N = n + m -2;
+        int N = n + m - 2;
         int R = m - 1;
         double res = 1;
         

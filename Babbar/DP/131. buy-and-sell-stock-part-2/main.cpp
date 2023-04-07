@@ -59,11 +59,11 @@ int solveTab(vector<int> &prices)
 			int profit = 0;
 			if (buy)
 			{
-				profit = max(-prices[index] + solveMem(index + 1, 0, prices, dp), 0 + solveMem(index + 1, 1, prices, dp));
+				profit = max(-prices[index] + dp[index+1][0], 0 + dp[index+1][1]);
 			}
 			else
 			{
-				profit = max(prices[index] + solveMem(index + 1, 1, prices, dp), 0 + solveMem(index + 1, 0, prices, dp));
+				profit = max(prices[index] + dp[index+1][1], 0 + dp[index+1][0]);
 			}
 
 			dp[index][buy] = profit;
