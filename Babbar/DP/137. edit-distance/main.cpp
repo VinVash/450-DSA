@@ -64,34 +64,32 @@ int solveMem(string a, string b, int i, int j, vector<vector<int>> &dp) {
 }
 
 int solveTab(string a, string b) {
-    vector<vector<int>> dp(a.size()+1, vector<int>(b.size()+1, 0));
+    int n = a.size(), m = b.size();
+    vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
     
-    for(int j = 0; j < b.size(); j++) {
-        dp[a.size()][j] = b.size() - j;
+    for(int j = 0; j < m; j++) {
+        dp[n][j] = m - j;
     }
     
-    for(int i = 0; i < a.size(); i++) {
-        dp[i][b.size()] = a.size() - i;
+    for(int i = 0; i < n; i++) {
+        dp[i][m] = n - i;
     }
     
-    for(int i = a.size()-1; i >= 0; i--) {
-        for(int j = b.size()-1; j >= 0; j--) {
+    for(int i = n-1; i >= 0; i--) {
+        for(int j = m-1; j >= 0; j--) {
             int ans = 0;
+            
             if(a[i] == b[j]) {
                 ans = dp[i+1][j+1];
             } else {
-                // insert
                 int insertAns = 1 + dp[i][j+1];
 
-                // delete
-                int deleteAns = 1 + dp[i+1][j];;
+                int deleteAns = 1 + dp[i+1][j];
 
-                // replace
-                int replaceAns = 1 + dp[i+1][j+1];;
+                int replaceAns = 1 + dp[i+1][j+1];
 
                 ans = min(insertAns, min(deleteAns, replaceAns));
             }
-
             dp[i][j] = ans;
         }
     }

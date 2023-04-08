@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Compute the longest common subsequence with the original string and the reversed string.
 int solveTab(string a, string b) {
 	int n = a.size(), m = b.size();
 	vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
