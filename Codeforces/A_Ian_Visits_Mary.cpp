@@ -2,9 +2,10 @@
 using namespace std;
 #define vi vector<int>
 #define vll vector<long long>
+#define vvi vector<vector<int>>
+#define vvll vector<vector<long long>>
 typedef long long ll;
 
-// (k+1)^2 = n // for minimum k to place n points.
 
 int main() {
 
@@ -15,10 +16,10 @@ int main() {
 
 	int t; cin >> t;
 	while(t--) {
-		ll n; cin >> n;
-
-
-		cout << (ll)sqrt(n-1) << endl;
+		int a, b; cin >> a >> b;
+		cout << 2 << endl;
+		cout << a-1 << " " << 1 << endl;
+		cout << a << " " << b << endl;
 	}
 
 

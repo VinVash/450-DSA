@@ -4,39 +4,46 @@ using namespace std;
 #define vll vector<long long>
 typedef long long ll;
 
-vi solve(int n, int k) {
-	vi a;
-	if(n == 0)
+void solve(ll n, ll k) {
+	vll ans(n);
+	if(k == 0) {
+		for(ll i = 0; i < n; i++)
+			cout << -1 << " ";
 		cout << endl;
-	if(k < n) {
-		for(int i = 0; i < n; i++)
-			a.emplace_back(-1);
-		if(k > 0)
-			a[k-1] = 200;
-		a[k] = -400;
 	} else {
-		a = solve(n-1, k-n);
-		a.emplace_back(1000);
-	}
+		for(ll i = 0; i < n; i++) {
+			if(k >= n-i) {
+				ans[i] = 1000;
+				k -= (n-i);
+			} else {
+				ans[i] = k;
+				for(ll j = i+1; j < i+k; j++) // from (i to i+k-1), there will be k positive subarrays.
+					ans[j] = -1;
+				for(ll j = i+k; j < n; j++)
+					ans[j] = -2;
+				break;
+			}
+		}
 
-	return a;
+		for(ll i = 0; i < n; i++)
+			cout << ans[i] << " ";
+		cout << endl;
+	}
 }
 
-int main() {
+signed main() {
 
 	#ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 	#endif
 
-	int t; cin >> t;
+	ll t; cin >> t;
 	while(t--) {
-		int n, k; cin >> n >> k;
+		ll n, k; cin >> n >> k;
 
-		vi ans = solve(n, k);
-		for(auto x: ans)
-			cout << x << " ";
-		cout << endl;
+		solve(n, k);
+		
 	}
 
 	return 0;
