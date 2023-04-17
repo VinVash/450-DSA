@@ -1,22 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> printLeaves(Node *node, vector<int> &res) {
+void printLeaves(Node *node, vector<int> &res) {
     if(node == nullptr)
-        return res;
+        return;
         
     printLeaves(node->left, res);
     printLeaves(node->right, res);
     
     if(!node->left && !node->right)
         res.push_back(node->data);
-        
-    return res;
 }
 
-vector<int> printLeftBoundary(Node *node, vector<int> &res) {
+void printLeftBoundary(Node *node, vector<int> &res) {
     if(node == nullptr)
-        return res;
+        return;
         
     if(node->left) {
         res.push_back(node->data);
@@ -25,13 +23,11 @@ vector<int> printLeftBoundary(Node *node, vector<int> &res) {
         res.push_back(node->data);
         printLeftBoundary(node->right, res);
     }
-    
-    return res;
 }
 
-vector<int> printRightBoundary(Node* root, vector<int> &res) {
+void printRightBoundary(Node* root, vector<int> &res) {
     if (root == nullptr)
-        return res;
+        return;
  
     if (root->right) {
         // to ensure bottom up order, first call for right subtree, then print this node
@@ -42,35 +38,31 @@ vector<int> printRightBoundary(Node* root, vector<int> &res) {
         printRightBoundary(root->left, res);
         res.push_back(root->data);
     }
-    
-    return res;
 }
 
 vector <int> boundary(Node *root) {
-    vector<int> res;
-    
-    if(root == nullptr)
-        return res;
+    vector<int> ans;
+    if(root == NULL)
+        return ans;
         
-    res.push_back(root->data);
-    
-    vector<int> res1, res2, res3;
-    
-    printLeftBoundary(root->left, res1);
-    printLeaves(root->left, res2);
-    printLeaves(root->right, res2);
-    printRightBoundary(root->right, res3);
-    
-    for(auto i: res1)
-        res.push_back(i);
+    ans.push_back(root->data);
         
-    for(auto i: res2)
-        res.push_back(i);
+    vector<int> ans1, ans2, ans3;
+    
+    printLeftBoundary(root->left, ans1);
+    printLeaves(root->left, ans2);
+    printLeaves(root->right, ans2);
+    printRightBoundary(root->right, ans3);
+    
+    for(auto i: ans1)
+        ans.push_back(i);
+    for(auto i: ans2)
+        ans.push_back(i);
+    for(auto i: ans3)
+        ans.push_back(i);
         
-    for(auto i: res3)
-        res.push_back(i);
-        
-    return res;
+    return ans;
+    
 }
 
 int main() {

@@ -15,7 +15,7 @@ void inorderIterative(Node *root, vector<int> &res) {
 
 	while(p || stk.size()) {
 		if(p) {
-			res.push_back(p->data);
+			stk.push_back(p->data);
 			p = p->left;
 		} else {
 			p = stk.top();
@@ -31,11 +31,9 @@ int minSwaps(vector<int> &nums) {
 	int ans = 0;
 
 	vector<int> temp(nums.begin(), nums.end());
-
-	unordered_map<int, int> h;
-
 	sort(temp.begin(), temp.end());
 
+	unordered_map<int, int> h;
 	for(int i = 0; i < n; i++)
 		h[arr[i]] = i; // positions of elements in original array.
 

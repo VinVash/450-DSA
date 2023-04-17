@@ -3,8 +3,7 @@ using namespace std;
 
 ListNode* reverseKGroup(ListNode* head, int k) {
     ListNode *r = nullptr, *q = nullptr, *temp = head;
-    ListNode *lastfirst = nullptr, *t = nullptr;
-    bool flag = false;
+    ListNode *lastfirst = nullptr;
     
     int l = 0; // stores the length of the linked list.
     while(temp != nullptr) {
@@ -15,6 +14,7 @@ ListNode* reverseKGroup(ListNode* head, int k) {
     int rep = l / k;
     temp = head;
     
+    bool flag = false;
     while(rep) {
         r = q = nullptr;
         for(int i = 0; i < k; i++) {

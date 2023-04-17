@@ -58,10 +58,28 @@ int main() {
     root->right->right->right = new Node('E');
     root->right->right->left= new Node('D');
 
+
+
+
+    // 1st appraoch
 	string str = duplicateSubtreesUtil(root);
 
 	(str.compare("") == 0) ? cout << "Yes" : cout <<  "No";
 	cout << endl;
+
+
+
+	// 2nd appraoch
+	mp.clear();
+	solve(root);
+	for(auto it: mp) {
+		if(it.second >= 2)
+			cout << "Yes" << endl;
+	}
+	cout << "No" << endl;
+
+
+
 
 	return 0;
 }
