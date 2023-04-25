@@ -8,28 +8,14 @@ int main() {
     freopen("output.txt", "w", stdout);
     #endif
 
-    long long n; cin >> n;
-    vector<long long> a(n);
-    for(long long i = 0; i < n; i++)
-      cin >> a[i];
-    
-    int ans = 0;
-      
-    for(long long i = 0; i < n-1; i++) {
-      if((a[i] + a[i+1]) % 2) { // is odd.
-        if(a[i+1] % 2) { // first no. is even, second no.is odd.
-          if(i+2 < n && a[i+2] % 2 == 0)
-            a[i+1] = a[i];
-        } else { // first no. is odd, second no. is even.
-          if(i+2 < n && a[i+2] % 2 == 1)
-            a[i+1] = a[i];
-        }
-        
-        ans++;
-      }
-    }
-    
-    cout << ans << endl;
+    double num = 50.0;
+
+    for(int i = 0; i < 262; i++)
+        cout << num + 0.2*i << "," << endl;
+
+    num = 102.3;
+    for(int i = 0; i < 263; i++)
+        cout << num + 0.05*i << "," << endl;
         
    return 0;
     
