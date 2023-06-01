@@ -11,11 +11,11 @@ int main() {
     double num = 50.0;
 
     for(int i = 0; i < 262; i++)
-        cout << num + 0.2*i << "," << endl;
-
-    num = 102.3;
-    for(int i = 0; i < 263; i++)
         cout << num + 0.05*i << "," << endl;
+
+    num = 63.1;
+    for(int i = 0; i < 263; i++)
+        cout << num + 0.2*i << "," << endl;
         
    return 0;
     
