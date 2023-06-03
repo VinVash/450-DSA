@@ -19,7 +19,7 @@ int minJumps(vector<int> &arr, int n){
         steps--;
         maxReach = max(maxReach, i + arr[i]);
         
-        if(steps == 0) {
+        if(steps == 0) { // if no steps left in the current jump.
             jump++;
             
             if(i >= maxReach) return -1;

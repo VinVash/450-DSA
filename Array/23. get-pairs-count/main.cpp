@@ -2,59 +2,21 @@
 using namespace std;
 
 int getPairsCount(vector<int> &arr, int n, int k) {
-    sort(arr.begin(), arr.end());
-    cout << "Sorted vector: " << endl;
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
-    
-    int l = 0, r = n-1;
-    int res = 0;
-    
-    // while(j >= i) {
-    //     if(arr[i] + arr[j] > k)
-    //         j--;
-    //     else if(arr[i] + arr[j] < k)
-    //         i++;
-    //     else {
-    //         cout << arr[i] << " " << arr[j] << endl;
-    //         int x = 1, y = 1;
-    //         while(arr[i+1] == arr[i]) {
-    //             i++; x++;
-    //             cout << "i :" << i << endl;
-    //         }
-    //         i++;
-    //         while(arr[j-1] == arr[j]) {
-    //             j--; y++;
-    //             cout << "j :" << j << endl;
-    //         }
-    //         j--;
-            
-    //         res += x*y;
-    //     }
-    // }
-
-    while(l <= r) {
-            if(arr[l] + arr[r] > k)
-                r--;
-            else if(arr[l] + arr[r] < k)
-                l++;
-            else {
-                int x=1, y=1;
-                
-                while(arr[l] == arr[l+1])
-                    l++; x++;
-                l++; // to move to the next distinct element.
-                
-                while(arr[r-1] == arr[r])
-                    r--; y++;
-                r--; // to move to the next distinct element.
-                
-                res += x*y;
-            }
-        }
-    
-    return res;
+    sort(arr, arr + n);
+    int x = 0, c = 0, y, z;
+    for (int i = 0; i < n - 1; i++) {
+        x = k - arr[i];
+        
+        // Lower bound from i+1
+        int y = lower_bound(arr + i + 1,
+                            arr + n, x) - arr;
+          
+        // Upper bound from i+1
+        int z = upper_bound(arr + i + 1, 
+                            arr + n, x) - arr;
+        c = c + z - y;
+    }
+    return c;
 }
 
 int main() {

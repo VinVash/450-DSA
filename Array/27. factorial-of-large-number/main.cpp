@@ -3,24 +3,6 @@ using namespace std;
 
 #define MAX 500 // the max no. of digits in output.
 
-// int multiply(int x, vector<int> &res, int res_size) {
-//     int carry = 0;
-    
-//     for(int i = 0; i < res_size; i++) {
-//         int temp = res[i] * x + carry;
-//         res[i] = temp % 10;
-//         carry = temp / 10;
-//     }
-    
-//     while(carry) {
-//         res[res_size] = carry % 10;
-//         carry = carry / 10;
-//         res_size++;
-//     }
-    
-//     return res_size;
-// }
-
 void multiply(int x, vector<int> &res) {
     int carry = 0;
 
@@ -40,7 +22,6 @@ vector<int> factorialOfLargeNumber(int n) {
 	vector<int> res; // consider max size as 500 digits.
         
     res.push_back(1); // starting factorial.
-    int res_size = 1; // size of the current res vector.
     
     for(int i = 2; i <= n; i++) {
          multiply(i, res);
