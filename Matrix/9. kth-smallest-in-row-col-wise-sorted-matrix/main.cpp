@@ -22,8 +22,8 @@ int kthSmallest(vector <vector<int>> &mat,int k)
     {
         int mid = lo + (hi - lo) / 2;
         int count = 0;
+
         int j = n - 1;
-        
         // find out how many numbers are greater than mid
         // between lo and hi
         for (int i = 0; i < n; i++) 

@@ -22,7 +22,7 @@ int maxHist(vector<int> &row, int c) {
         else {
             // If this bar is lower than top of stack, then
             // calculate area of rectangle with stack top as
-            // the smallest (or minimum height) bar. 'i' is
+            // the smallest (minimum height) bar. 'i' is
             // 'right index' for the top and element before
             // top in stack is 'left index'
             top_val = row[result.top()];
