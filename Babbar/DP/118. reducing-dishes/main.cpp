@@ -42,7 +42,7 @@ int solveTab(vector<int> &satisfaction) {
 		}
 	}
 
-	return dp[0][0]; // 
+	return dp[0][0];
 }
 
 int solveTabSO(vector<int> &satisfaction) {

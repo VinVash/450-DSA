@@ -2,65 +2,63 @@
 using namespace std;
 
 // Exponential
-int solveRec(vector<int> &num, int x) {
-	if(x == 0)
-		return 0;
+int solve(vector<int> coins, int amount) {
+    if(amount == 0)
+        return 0;
+    if(amount < 0)
+        return INT_MAX;
 
-	if(x < 0)
-		return INT_MAX;
+    int mini = INT_MAX;
 
-	int mini = INT_MAX;
-	for(int i = 0; i < num.size(); i++) { // loop for each coin.
-		int ans = solveRec(num, x - num[i]);
-		if(ans != INT_MAX)
-			mini = min(mini, 1 + ans);
-	}
+    for(int i = 0; i < coins.size(); i++) {
+        int ans = solve(coins, amount-coins[i]);
 
-	return mini;
+        if(ans != INT_MAX)
+            mini = min(ans+1, mini);
+    }
+
+    return mini;
 }
 
 // O(x * n) x -> amount, n -> no. of coins.
-int solveMem(vector<int> &num, int x, vector<int> &dp) {
-	if(x == 0)
-		return 0;
+int solveMem(vector<int> coins, int amount, vector<int>& dp) {
+    if(amount == 0)
+        return 0;
+    if(amount < 0)
+        return INT_MAX;
 
-	if(x < 0)
-		return INT_MAX;
+    if(dp[amount] != -1)
+        return dp[amount];
 
-	if(dp[x] != -1)
-		return dp[x];
+    int mini = INT_MAX;
 
-	int mini = INT_MAX;
-	for(int i = 0; i < num.size(); i++) {
-		int ans = solveMem(num, x - num[i], dp);
-		if(ans != INT_MAX)
-			mini = min(mini, 1 + ans);
-	}
+    for(int i = 0; i < coins.size(); i++) {
+        int ans = solveMem(coins, amount-coins[i], dp);
 
-	dp[x] = mini;
+        if(ans != INT_MAX)
+            mini = min(ans+1, mini);
+    }
 
-	return mini;
+    return dp[amount] = mini;
 }
 
 // O(x * n) x -> amount, n -> no. of coins.
-int solveTab(vector<int> &num, int x) {
-	vector<int> dp(x+1, INT_MAX);
+int solveTab(vector<int> coins, int amount) {
+    vector<int> dp(amount+1, INT_MAX);
+    dp[0] = 0;
 
-	dp[0] = 0;
+    for(int i = 1; i <= amount; i++) {
+        for(int j = 0; j < coins.size(); j++) {
+            if(i - coins[j] >= 0 && dp[i - coins[j]] != INT_MAX) {
+                int ans = dp[i - coins[j]];
+                dp[i] = min(ans+1, dp[i]);
+            }
+        }
+    }
 
-	for(int i = 1; i <= x; i++) {
-		// trying to solve for every amount figure from 1 to x.
-		for(int j = 0; j < num.size(); j++) {
-			if(i - num[j] >= 0 && dp[i - num[j]] != INT_MAX) {
-				dp[i] = min(dp[i], 1 + dp[i - num[j]]);
-			}
-		}
-	}
-
-	if(dp[x] == INT_MAX)
-		return -1;
-	else
-		return dp[x];
+    if(dp[amount] == INT_MAX)
+        return -1;
+    return dp[amount];
 }
 
 int main() {
@@ -70,9 +68,18 @@ int main() {
     freopen("output.txt", "w", stdout);
 	#endif
 
-    vector<int> num {1, 2, 3};
-    int x = 7;
-	cout << solveTab(num, x) << endl;
+    vector<int> num {1, 2, 5};
+    int x =11;
+
+
+	int ans = solveTab(num, x);
+	if(ans == INT_MAX)
+		ans = -1;
+
+	cout << "Now the ans is: " << ans << endl;
+
+
+
 
 	return 0;
 }

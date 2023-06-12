@@ -37,6 +37,21 @@ int solveTab(vector<int> cost) {
     return min(dp[0], dp[1]);
 }
 
+int solveTab2(vector<int> cost) {
+    int n = cost.size();
+    int prev = 0;
+    int next = 0;
+
+    for(int i = n-1; i >= 0; i--) {
+        int curr = cost[i] + min(prev, next);
+
+        prev = next;
+        next = curr;
+    }
+
+    return min(prev, next);
+}
+
 int minCostClimbingStairs(vector<int>& cost) {
     
     int n = cost.size();

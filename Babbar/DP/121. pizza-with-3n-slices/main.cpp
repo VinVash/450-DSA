@@ -3,7 +3,7 @@ using namespace std;
 
 int solveRec(int index, int endIndex, vector<int> &slices, int n) {
 	// base case.
-	if(n == 0 || index >= endIndex) // already eaten all slices.
+	if(n == 0 || index > endIndex) // already eaten all slices.
 		return 0;
 
 	int take = slices[index] + solveRec(index+2, endIndex, slices, n-1);

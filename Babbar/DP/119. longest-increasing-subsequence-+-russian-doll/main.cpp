@@ -34,24 +34,24 @@ int solveRec(int n, vector<int> &a, int curr, int prev) {
 	return max(inc, exc);
 }
 
-int solveMem(int n, vector<int> &a, int curr, int prev, vector<vector<int>> &dp) {
-	// base case.
-	if(curr == n) {
-		return 0;
-	}
-
-	if(dp[curr][prev+1] != -1)
-		return dp[curr][prev+1];
-
-	// include
-	int inc = 0;
-	if(prev == -1 || a[curr] > a[prev])
-		inc = 1 + solveRec(n, a, curr+1, curr);
-
-	// exclude
-	int exc = 0 + solveRec(n, a, curr+1, prev);
-
-	return dp[curr][prev+1] = max(inc, exc); // prev+1, so that negative index is not passed.
+int solveMem(vector<int> &nums, int n, int curr, int prev, vector<vector<int>> &dp) {
+    if(curr == n) {
+        return 0; //reached the end index.
+    }
+    
+    if(dp[curr][prev+1] != -1)
+        return dp[curr][prev+1];
+    
+    int inc = 0, exc = 0;
+//         include
+    if(prev == -1 || nums[curr] > nums[prev]) {
+         inc = 1 + solveMem(nums, n, curr+1, curr, dp);
+    }
+    
+//         exclude
+    exc = 0 + solveMem(nums, n, curr+1, prev, dp);
+    
+    return dp[curr][prev+1] = max(inc, exc);
 }
 
 int solveTab(int n, vector<int> &a) {
@@ -62,7 +62,7 @@ int solveTab(int n, vector<int> &a) {
 			// include
 			int inc = 0;
 			if(prev == -1 || a[curr] > a[prev])
-				inc = 1 + dp[curr+1][curr+1];
+				inc = 1 + dp[curr+1][curr+1]; // second curr+1 in order to bring it in sync with prev's indices, i.e. accessing a specific index by adding +1.
 
 			// exclude
 			int exc = 0 + dp[curr+1][prev+1];
