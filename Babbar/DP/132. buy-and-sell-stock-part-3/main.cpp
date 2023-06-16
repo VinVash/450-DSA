@@ -62,7 +62,7 @@ int solveTab(vector<int> &prices) {
 		}
 	}
 
-	return dp[0][1][2];
+	return dp[0][1][2] + 1;
 }
 
 int main() {
