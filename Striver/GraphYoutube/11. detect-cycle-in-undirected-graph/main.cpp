@@ -57,7 +57,7 @@ bool isCycle(int V, vector<int> adj[]) {
 	}
 
 	/* Or this appraoch */
-	return dfs(1, -1, vis, adj);
+	// return dfs(1, -1, vis, adj);
 
 
 	return false;

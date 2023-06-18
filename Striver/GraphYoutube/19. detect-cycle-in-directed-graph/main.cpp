@@ -18,7 +18,7 @@ bool dfs(int node, vector<int>& vis, vector<int>& pathVis, vector<int> adj[]) {
 			if(dfs(it, vis, pathVis, adj))
 				return true;
 		} else if(pathVis[it]) {
-			return true; 
+			return true;
 		}
 	}
 
