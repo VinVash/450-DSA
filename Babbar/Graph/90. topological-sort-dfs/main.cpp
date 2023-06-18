@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void topoSort(int node, vector<bool> &visited, stack<int> &stk, unordered_map<int, list<int>> &adj) {
+void dfs(int node, vector<bool> &visited, stack<int> &stk, unordered_map<int, list<int>> &adj) {
 	visited[node] = true;
 
 	for(auto neighbour: adj[node]) {
 		if(!visited[neighbour]) {
-			topoSort(neighbour, visited, stk, adj);
+			dfs(neighbour, visited, stk, adj);
 		}
 	}
 
@@ -31,7 +31,7 @@ vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e) {
 	stack<int> stk;
 	for(int i = 0; i < v; i++) {
 		if(!visited[i]) {
-			topoSort(i, visited, stk, adj);
+			dfs(i, visited, stk, adj);
 		}
 	}
 
