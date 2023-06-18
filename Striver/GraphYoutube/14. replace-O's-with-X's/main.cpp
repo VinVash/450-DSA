@@ -1,5 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define vi vector<int>
+#define vll vector<long long>
+#define vvi vector<vector<int>>
+#define vvll vector<vector<long long>>
+typedef long long ll;
 
 void dfs(int row, int col, vector<vector<int>> &vis, vector<vector<char>> mat) {
 	vis[row][col] = 1;
@@ -66,32 +71,6 @@ int main() {
     freopen("output.txt", "w", stdout);
 	#endif
 
-    int n, m;
-    cin >> n >> m;
-	vector<vector<char>> mat(n, vector<char>(m));
-
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < m; j++) {
-			cin >> mat[i][j];
-		}
-	}
-
-	// for(int i = 0; i < n; i++) {
-	// 	for(int j = 0; j < m; j++) {
-	// 		cout << mat[i][j] << " ";
-	// 	}
-	// 	cout << endl;
-	// }
-
-	vector<vector<char>> ans = fill(n, m, mat);
-
-	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < m; j++) {
-			cout << ans[i][j] << " ";
-		}
-		cout << endl;
-	}	
 
 	return 0;
 }
