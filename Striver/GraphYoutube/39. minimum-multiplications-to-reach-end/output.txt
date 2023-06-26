@@ -1,0 +1,5 @@
+start: 3
+end: 30
+Popped : 3
+Popped : 0
+-1
