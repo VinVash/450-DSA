@@ -6,8 +6,6 @@ using namespace std;
 #define vvll vector<vector<long long>>
 typedef long long ll;
 
-// Time complexity: O(4 * ⍺ * no_of_connections)
-
 class DisjointSet {
 public:
 	vector<int> rank, parent, size;
@@ -62,32 +60,52 @@ public:
 	}
 };
 
-int solve(int n, vector<vector<int>>& edges) {
-	DisjointSet ds(n);
+bool isValid(int r, int c, int n, int m) {
+	return r >= 0 && r < n && c >= 0 && c < m;
+}
 
-	int countExtras = 0;
-	for(auto it: edges) {
-		int u = it[0];
-		int v = it[1];
+vector<int> numberOfIslands(int n, int m, vector<vector<int>>& operators) {
+	DisjointSet ds(n * m);
+	int vis[n][m];
+	memset(vis, 0, sizeof vis);
 
-		if(ds.findUltimateParent(u) == ds.findUltimateParent(v)) {
-			countExtras++;
+	int count = 0;
+	vector<int> ans;
+	for(auto it: operators) {
+		int row = it[0];
+		int col = it[1];
+		if(vis[row][col] == 1) { // already an island.
+			ans.push_back(count);
 		} else {
-			ds.unionBySize(u, v);
+			vis[row][col] = 1;
+			count++;
+
+			int dr[] = {-1, 0, 1, 0};
+			int dc[] = {0, 1, 0, -1};
+
+			for(int idx = 0; idx < 4; idx++) {
+				int adjr = row + dr[idx];
+				int adjc = col + dc[idx];
+
+				if(isValid(adjr, adjc, n, m)) {
+					if(vis[adjr][adjc] == 1) {
+						int nodeNo = row * m + col;
+						int adjNodeNo = adjr * m + adjc;
+
+						if(ds.findUltimateParent(nodeNo) != ds.findUltimateParent(adjNodeNo)) {
+							count--; // joining two islands.
+							ds.unionBySize(nodeNo, adjNodeNo);
+						}
+					}
+				}
+			}
+
+			ans.push_back(count);
 		}
+
 	}
 
-	int countComponents = 0;
-
-	for(int i = 0; i < n; i++) {
-		if(ds.parent[i] == i)
-			countComponents++;
-	}
-
-	int ans = countComponents-1;
-	if(countExtras >= ans)
-		return ans;
-	return -1;
+	return ans;
 }
 
 int main() {

@@ -6,8 +6,6 @@ using namespace std;
 #define vvll vector<vector<long long>>
 typedef long long ll;
 
-// Time complexity: O(4 * ⍺ * no_of_connections)
-
 class DisjointSet {
 public:
 	vector<int> rank, parent, size;
@@ -62,32 +60,51 @@ public:
 	}
 };
 
-int solve(int n, vector<vector<int>>& edges) {
+vector<vector<string>> mergeDetails(vector<vector<string>>& details) {
+	int n = details.size();
+
 	DisjointSet ds(n);
 
-	int countExtras = 0;
-	for(auto it: edges) {
-		int u = it[0];
-		int v = it[1];
+	unordered_map<string, int> mapMailNode;
 
-		if(ds.findUltimateParent(u) == ds.findUltimateParent(v)) {
-			countExtras++;
-		} else {
-			ds.unionBySize(u, v);
+	for(int i = 0; i < n; i++) {
+		for(int j = 1; j < details[i].size(); j++) {
+			string mail = details[i][j];
+
+			// if mapMailNode doesn't contains mail node.
+			if(mapMailNode.find(mail) == mapMailNode.end()) {
+				mapMailNode[mail] = i;
+			} else { // if mapMailNode contains it.
+				ds.unionBySize(i, mapMailNode[mail]);
+			}
 		}
 	}
 
-	int countComponents = 0;
+	vector<string> mergeMail[n];
+	for(auto it: mapMailNode) {
+		string mail = it.first;
+		int node = ds.findUltimateParent(it.second);
 
-	for(int i = 0; i < n; i++) {
-		if(ds.parent[i] == i)
-			countComponents++;
+		mergeMail[node].push_back(mail);
 	}
 
-	int ans = countComponents-1;
-	if(countExtras >= ans)
-		return ans;
-	return -1;
+	vector<vector<string>> ans;
+
+	for(int i = 0; i < n; i++) {
+		if(mergeMail[i].size() == 0) continue;
+
+		sort(mergeMail[i].begin(), mergeMail[i].end());
+
+		vector<string> temp;
+		temp.push_back(details[i][0]);
+		for(auto it: mergeMail[i]) {
+			temp.push_back(it);
+		}
+
+		ans.push_back(temp);
+	}
+
+	return ans;
 }
 
 int main() {
