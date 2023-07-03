@@ -25,6 +25,37 @@ void dfs(int row, int col, vector<vector<int>> &vis, vector<vector<char>> mat) {
 	}
 }
 
+void bfs(int row, int col, vector<vector<int>>& vis, vector<vector<char>>& mat) {
+    vis[row][col] = 1;
+    queue<pair<int, int>> q;
+    
+    int n = mat.size();
+    int m = mat[0].size();
+    
+    q.push({ row, col });
+    
+    int delrow[] = {-1, 0, 1, 0};
+    int delcol[] = {0, 1, 0, -1};
+    
+    while(!q.empty()) {
+        int r = q.front().first;
+        int c = q.front().second;
+        q.pop();
+        
+        for(int i = 0; i < 4; i++) {
+            int nrow = r + delrow[i];
+            int ncol = c + delcol[i];
+            
+            if(nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && !vis[nrow][ncol] && mat[nrow][ncol] == 'O'){
+                q.push({ nrow, ncol });
+                vis[nrow][ncol] = 1;
+            }
+            
+            
+        }
+    }
+}
+
 // Time complexity: O(N x M) + O(N) = O(N x M)
 // Space complexity: O(N x M)
 vector<vector<char>> fill(int n, int m, vector<vector<char>> mat) {
@@ -32,6 +63,8 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat) {
 	vector<vector<int>> vis(n, vector<int>(m, 0));
 
 	/* Visit all the O's which are visitable by the boundaries, therefore only those O's will be left which are inside X's  */
+
+	/* Or replace all the dfs calls by the bfs calls */
 
 	for(int j = 0; j < m; j++) {
 		if(!vis[0][j] && mat[0][j] == 'O') {
