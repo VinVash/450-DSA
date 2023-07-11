@@ -8,7 +8,7 @@ typedef long long ll;
 
 // Time complexity: O(N * word.length * 26 * logN)
 
-int wordLetter(string startWord, string targetWord, vector<string>& wordList) {
+int wordLadderLength(string startWord, string targetWord, vector<string>& wordList) {
 	queue<pair<string, int>> q;
 	q.push({ startWord, 1 });
 	unordered_set<string> st(wordList.begin(), wordList.end());

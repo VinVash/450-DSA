@@ -10,7 +10,8 @@ typedef long long ll;
 
 
 vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
-	vector<int> adjRev[V];
+	vector<int> indegree(V, 0);
+    vector<int> adjRev[V];
 	for(int i = 0; i < V; i++) {
 		for(auto it: adj[i]) {
 			adjRev[it].push_back(i);
@@ -29,14 +30,17 @@ vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
 	while(!q.empty()) {
 		int node = q.front();
 		q.pop();
+		
+		safeNodes.push_back(node);
+		
 		for(auto it: adjRev[node]) {
 			indegree[it]--;
 			if(indegree[it] == 0)
-				safeNodes.push_back(it);
+				q.push(it);
 		}
 	}
 
-	reverse(safeNodes.begin(), safeNodes.end());
+	sort(safeNodes.begin(), safeNodes.end());
 
 	return safeNodes;
 }

@@ -36,7 +36,7 @@ bool isCyclic(int V, vector<int> adj[]) {
 	    }
 	}
 	
-	return topo.size() != V;
+	return topo.size() != V; // if toposort size is less than V, then cycle is there.
 }
 
 

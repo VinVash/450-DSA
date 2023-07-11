@@ -37,6 +37,7 @@ vector<vector<string>> findSequences(string beginWord, string endWord, vector<st
                 ans.push_back(vec);
             }
         }
+        
         for(int i = 0; i < word.size(); i++) {
             char original = word[i];
             for(char c = 'a'; c <= 'z'; c++) {
