@@ -6,6 +6,8 @@ using namespace std;
 #define vvll vector<vector<long long>>
 typedef long long ll;
 
+// Shortest path in weighted undirected graph.
+
 // Time complexity: O(ElogV) + O(n) [extra for backtracking]
 // Space complexity: O(n). using different arrays such as dist, parent, path.
 
@@ -25,9 +27,8 @@ vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
 	pq.push({ 0, 1 });
 
 	while(!pq.empty()) {
-		auto it = pq.top();
-		int node = it.second;
-		int dis = it.first;
+		int node = pq.top().second;
+		int dis = pq.top().first;
 		pq.pop();
 
 		for(auto it: adj[node]) {

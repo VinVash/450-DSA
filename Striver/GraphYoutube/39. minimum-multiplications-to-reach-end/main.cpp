@@ -10,7 +10,7 @@ typedef long long ll;
 
 int minimumMultiplications(vector<int>& arr, int start, int end) {
 	queue<pair<int, int>> q;
-	q.push({ start, 0 });
+	q.push({ start, 0 }); // { node, steps taken to reach that node }
 	vector<int> dist(100000, 1e9); // hence, the nodes will be numbered 0 to 99999.
 	dist[start] = 0;
 
