@@ -30,7 +30,7 @@ void printRightBoundary(Node* root, vector<int> &res) {
         return;
  
     if (root->right) {
-        // to ensure bottom up order, first call for right subtree, then print this node
+        // to ensure bottom up order, first call for subtree, then print this node
         printRightBoundary(root->right, res);
         res.push_back(root->data);
     }
