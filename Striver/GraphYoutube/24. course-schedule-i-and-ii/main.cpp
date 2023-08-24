@@ -7,7 +7,7 @@ using namespace std;
 typedef long long ll;
 
 vector<int> findOrder(int V, int m, vector<vector<int>> prerequisites) {
-    vector<vector<int>> adj;
+    vector<vector<int>> adj(V);
     for(auto x: prerequisites) {
         adj[x[1]].push_back(x[0]); // x.second -> x.first
     }

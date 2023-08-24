@@ -64,7 +64,7 @@ vector<vector<char>> fill(int n, int m, vector<vector<char>> mat) {
 
 	/* Visit all the O's which are visitable by the boundaries, therefore only those O's will be left which are inside X's  */
 
-	/* Or replace all the dfs calls by the bfs calls */
+	/* For bfs -> replace all the dfs calls by bfs calls */
 
 	for(int j = 0; j < m; j++) {
 		if(!vis[0][j] && mat[0][j] == 'O') {

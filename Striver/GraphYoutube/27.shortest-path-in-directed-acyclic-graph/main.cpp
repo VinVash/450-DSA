@@ -38,10 +38,7 @@ void dfs(int node, vector<pair<int, int>> adj[], int vis[], stack<int>& stk) {
     }
     
     // step 2: do the distance thing.
-    vector<int> dist(N);
-    for(int i = 0; i < N; i++)
-        dist[i] = 1e9;
-        
+    vector<int> dist(N, 1e9); // set all vertices' distance to infinity.
     dist[0] = 0; // dist of src node is 0.
     
     // O(N+M)
@@ -56,6 +53,11 @@ void dfs(int node, vector<pair<int, int>> adj[], int vis[], stack<int>& stk) {
             if(dist[node] + wt < dist[v])
                 dist[v] = dist[node] + wt;
         }
+    }
+
+    for(int i = 0; i < dist.size(); i++) {
+        if(dist[i] == 1e9)
+            dist[i] = -1;
     }
     
     return dist;

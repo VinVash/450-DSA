@@ -36,13 +36,14 @@ vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
 	vector<int> pathVis(V, 0);
 
 	vector<int> check(V, 0);
-	vector<int> safeNodes;
 
 	for(int i = 0; i < V; i++) {
 		if(!vis[i]) {
 			dfs(i, vis, pathVis, adj, check);
 		}
 	}
+
+	vector<int> safeNodes;
 
 	for(int i = 0; i < V; i++) {
 		if(check[i] == 1)

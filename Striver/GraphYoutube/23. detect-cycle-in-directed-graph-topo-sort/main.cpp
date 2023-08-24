@@ -15,14 +15,13 @@ bool isCyclic(int V, vector<int> adj[]) {
 	    }
 	}
 	
-	vector<int> topo; // to store the topological sort.
-	
 	queue<int> q;
 	for(int i = 0; i < V; i++) {
 	    if(indegree[i] == 0)
 	        q.push(i);
 	}
 	
+	vector<int> topo; // to store the topological sort.
 	while(!q.empty()) {
 	    int node = q.front();
 	    q.pop();

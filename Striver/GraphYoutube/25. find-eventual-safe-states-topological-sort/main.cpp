@@ -10,6 +10,7 @@ typedef long long ll;
 
 
 vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+	
 	vector<int> indegree(V, 0);
     vector<int> adjRev[V];
 	for(int i = 0; i < V; i++) {
