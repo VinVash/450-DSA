@@ -11,21 +11,7 @@ typedef long long ll;
 
 int countPaths(int n, vector<vector<int>>& roads) {
 
-	int cnt = 0;
-    int mod = 1e9 + 7;
-    
     vector<pair<int, int>> adj[n];
-    
-    priority_queue<
-        pair<int,int>,
-        vector<pair<int,int>>,
-        greater<pair<int,int>>
-    > pq;
-    
-    vector<int> dist(n, INT_MAX);
-    vector<int> ways(n, 0);
-    
-    //
     for(auto it : roads){
         int u = it[0];
         int v = it[1];
@@ -36,37 +22,37 @@ int countPaths(int n, vector<vector<int>>& roads) {
         
     }
     
-    pq.push({0, 0}); // {dist, lastNode}
+    priority_queue<int, vector<int>, greater<int>> pq;
+    pq.push(0);
+    
+    vector<int> dist(n, INT_MAX);
     dist[0] = 0;
+    
+    vector<int> ways(n, 0);
     ways[0] = 1;
     
     while(!pq.empty()){
         
-        int node = pq.top().second;
+        int node = pq.top();
         pq.pop();
         
-        //
         for(auto it : adj[node]){
-            
             int v = it.first;
-            int edgeWeight = it.second; // for, (u to v)
+            int edgeWeight = it.second;
             
-            if(dist[node] + edgeWeight < dist[v]){ // if(d + edgeWeight <= dist[v]){...}
+            if(dist[node] + edgeWeight < dist[v]) {
             
                 dist[v] = dist[node] + edgeWeight;
-                
-                pq.push({dist[v], v});
-                
+                pq.push(v);
                 ways[v] = ways[node];
-            }
-            else if(dist[node] + edgeWeight == dist[v]){
+                
+            } else if(dist[node] + edgeWeight == dist[v]){
                 ways[v] += ways[node];
             }
         }
         
     }
     
-    //
     return ways[n-1];
 
 

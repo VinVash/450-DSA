@@ -65,6 +65,7 @@ bool isValid(int r, int c, int n, int m) {
 }
 
 vector<int> numberOfIslands(int n, int m, vector<vector<int>>& operators) {
+	
 	DisjointSet ds(n * m);
 	int vis[n][m];
 	memset(vis, 0, sizeof vis);

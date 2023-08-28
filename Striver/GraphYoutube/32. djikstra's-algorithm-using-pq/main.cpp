@@ -10,10 +10,9 @@ typedef long long ll;
 // Space complexity: 
 
 vector<int> dijkstra(int V, vector<vector<int>> adj[], int S) {
+
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min heap
-	vector<int> dist(V);
-	for(int i = 0; i < V; i++)
-		dist[i] = 1e9; // mark as infinity.
+	vector<int> dist(V, 1e9); // mark all nodes as infinity.
 
 	dist[S] = 0;
 	pq.push({ 0, S });
@@ -29,7 +28,7 @@ vector<int> dijkstra(int V, vector<vector<int>> adj[], int S) {
 
 			if(dis + edgeWeight < dist[adjNode]) {
 				dist[adjNode] = dis + edgeWeight;
-				pq.push({ dis[adjNode], adjNode });
+				pq.push({ dist[adjNode], adjNode });
 			}
 		}
 	}

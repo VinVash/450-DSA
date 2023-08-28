@@ -11,11 +11,13 @@ int shortestPath(vector<vector<int>>& grid, pair<int, int> source, pair<int, int
 	if(source.first == destination.first && source.second == destination.second)
 		return 0;
 
-	queue<pair<int, pair<int, int>>> q;
 	int n = grid.size(), m = grid[0].size();
+
+	queue<pair<int, pair<int, int>>> q;
+	q.push({ 0, { source.first, source.second } });
+
 	vector<vector<int>> dist(n, vector<int>(m, 1e9));
 	dist[source.first][source.second] = 0;
-	q.push({ 0, { source.first, source.second } });
 
 	int dr[] = {-1, 0, 1, 0};
 	int dc[] = {0, 1, 0, -1};
@@ -23,6 +25,7 @@ int shortestPath(vector<vector<int>>& grid, pair<int, int> source, pair<int, int
 	while(!q.empty()) {
 		auto it = q.front();
 		q.pop();
+		
 		int dis = it.first;
 		int r = it.second.first;
 		int c = it.second.second;

@@ -104,6 +104,7 @@ vector<vector<string>> mergeDetails(vector<vector<string>>& details) {
 		ans.push_back(temp);
 	}
 
+	reverse(ans.begin(), ans.end());
 	return ans;
 }
 

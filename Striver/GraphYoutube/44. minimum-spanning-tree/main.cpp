@@ -18,7 +18,7 @@ int spanningTree(int V, vector<vector<int>> adj[]) {
 	// only store the weight and the node, no need to store the parent. (parent is needed for MST)
 	// but here we need only the sum of the weights.
 
-	pq.push({ 0, 0 });
+	pq.push({ 0, 0 }); // {weight, node}
 
 	// O(E)
 	while(!pq.empty()) {

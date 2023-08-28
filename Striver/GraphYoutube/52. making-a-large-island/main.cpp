@@ -67,13 +67,14 @@ bool isValid(int r, int c, int n) {
 }
 
 int MaxConnection(vector<vector<int>>& grid) {
-    int MaxConnection(vector<vector<int>>& grid) {
+
     int n = grid.size();
     DisjointSet ds(n * n);
     // step - 1
     for (int row = 0; row < n ; row++) {
         for (int col = 0; col < n ; col++) {
             if (grid[row][col] == 0) continue;
+            
             int dr[] = { -1, 0, 1, 0};
             int dc[] = {0, -1, 0, 1};
             for (int ind = 0; ind < 4; ind++) {

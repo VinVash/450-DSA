@@ -7,14 +7,18 @@ using namespace std;
 typedef long long ll;
 
 vector<vector<string>> findSequences(string beginWord, string endWord, vector<string>& wordList) {
-    unordered_set<string> st(wordList.begin(), wordList.end());
+    
     queue<vector<string>> q;
     q.push({ beginWord });
+
+    unordered_set<string> st(wordList.begin(), wordList.end());
     
     vector<string> usedOnLevel;
     usedOnLevel.push_back(beginWord);
     int level = 0;
+    
     vector<vector<string >> ans;
+
     while(!q.empty()) {
         vector<string> vec = q.front();
         q.pop();
@@ -33,7 +37,7 @@ vector<vector<string>> findSequences(string beginWord, string endWord, vector<st
             // the first sequence where we reached end.
             if(ans.size() == 0) {
                 ans.push_back(vec);
-            } else if(ans[0].size() == vec.size()) {
+            } else if(ans[0].size() == vec.size()) { // same level
                 ans.push_back(vec);
             }
         }
