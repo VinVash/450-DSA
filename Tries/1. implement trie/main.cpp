@@ -33,7 +33,7 @@ struct Node {
 
 class Trie {
 
-    private: 
+private:
     Node* root;
 
 public:
