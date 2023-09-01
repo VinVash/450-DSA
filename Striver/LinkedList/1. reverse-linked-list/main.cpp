@@ -15,16 +15,17 @@ public:
 };
 
 
-LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
-{
-    LinkedListNode<int> *newHead = nullptr; // initialise newHead
-    
-    while(head != nullptr) {
-        LinkedListNode<int> *temp = head->next;
-        head->next = newHead;
-        newHead = head;
-        head = temp;
+LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) {
+
+    ListNode* pre = NULL;
+    ListNode* next = NULL;
+
+    while(head != NULL) {
+        next = head->next;
+        head->next = pre;
+        pre = head;
+        head = next;
     }
-    
-    return newHead;
+
+    return pre;
 }

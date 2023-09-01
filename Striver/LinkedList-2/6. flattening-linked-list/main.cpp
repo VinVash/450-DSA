@@ -36,6 +36,49 @@ Node* flattenLinkedList(Node* head) {
     return head;
 }
 
+// Second question: Flattening a Linked List
+/* 
+Given a Linked List of size N, where every node represents a sub-linked-list and contains two pointers:
+(i) a next pointer to the next node,
+(ii) a bottom pointer to a linked list where this node is head.
+Each of the sub-linked-list is in sorted order.
+Flatten the Link List such that all the nodes appear in a single level while maintaining the sorted order.
+*/
+
+/*
+// We can use a priority queue.
+
+struct mycomp {
+    bool operator()(Node* a, Node* b)
+    {
+        return a->data > b->data;
+    }
+};
+
+void flatten(Node* root) {
+    priority_queue<Node*, vector<Node*>, mycomp> p;
+    // pushing main link nodes into priority_queue.
+    while (root != NULL) {
+        p.push(root);
+        root = root->next;
+    }
+
+    // Extracting the minimum node
+    // while priority queue is not empty
+    while (!p.empty()) {
+
+        // extracting min
+        auto k = p.top();
+        p.pop();
+
+        // printing  least element
+        cout << k->data << " ";
+        if (k->bottom)
+            p.push(k->bottom);
+    }
+}
+*/
+
 int main() {
 
     #ifndef ONLINE_JUDGE
