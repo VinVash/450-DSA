@@ -57,7 +57,12 @@ bool isCycle(int V, vector<int> adj[]) {
 	}
 
 	/* Or this appraoch */
-	// return dfs(1, -1, vis, adj);
+	// for(int i = 0; i < V; i++) { // for loop to ensure for disconnected components.
+	// 	if(!vis[i]) {
+	// 		if(dfs(i, -1, vis, adj) == true)
+	// 			return true;
+	// 	}
+	// }
 
 
 	return false;

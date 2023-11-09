@@ -21,7 +21,7 @@ void dfs(int node, vector<pair<int, int>> adj[], int vis[], stack<int>& stk) {
 
  vector<int> shortestPath(int N,int M, vector<vector<int>>& edges) {
     vector<pair<int, int>> adj[M];
-    for(int i = 0; i < N; i++) {
+    for(int i = 0; i < M; i++) {
         int u = edges[i][0];
         int v = edges[i][1];
         int wt = edges[i][2];

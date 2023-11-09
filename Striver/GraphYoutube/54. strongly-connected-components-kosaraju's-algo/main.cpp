@@ -14,7 +14,6 @@ void dfs(int node, vector<int>& vis, vector<int> adj[], stack<int>& stk) {
 			dfs(it, vis, adj, stk);
 	}
 
-
 	// when the dfs traversal is over.
 	stk.push(node);
 }
@@ -61,7 +60,7 @@ int kosaraju(int V, vector<int> adj[]) {
 
 		if(!vis[node]) {
 			scc++;
-			dfs3(node, vis, adjT); // dfs3 because it is the 3rd step.
+			dfs3(node, vis, adjT); // simple dfs. dfs3 naming because this is the 3rd step.
 		}
 	}
 

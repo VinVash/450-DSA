@@ -3,42 +3,37 @@ using namespace std;
 
 // Declare target and ans variable globally.
 
-int target;
-
-vector<vector<int>> ans;
-
-void solveRec(vector<int>& arr, int i, int sum, vector<int> op) {
-
-    if(i >= arr.size())
+void solve(vector<int>& candidates, int i, int target, vector<int>& temp, vector<vector<int>>& ans) {
+    if(i >= candidates.size())  
         return;
 
-    if(arr[i] + sum == target) {
-        op.push_back(arr[i]);
-        ans.push_back(op);
+    if(candidates[i] == target) {
+        temp.push_back(candidates[i]);
+        ans.push_back(temp);
         return;
     }
 
-    if(arr[i] + sum < target) {
-        vector<int> op1 = op;
-        vector<int> op2 = op;
+    if(candidates[i] < target) {
+        vector<int> temp1 = temp, temp2 = temp;
 
-        op2.push_back(arr[i]);
-        solveRec(arr, i, sum + arr[i], op2);
-        solveRec(arr, i + 1, sum, op1);
+        temp2.push_back(candidates[i]);
+
+        solve(candidates, i, target-candidates[i], temp2, ans);
+        solve(candidates, i+1, target, temp1, ans);
     } else {
-        solveRec(arr, i + 1, sum, op); // call for the next index
+        solve(candidates, i+1, target, temp, ans);
     }
 }
 
-vector<vector<int>> combinationSum(vector<int>& candidates, int required_target) {
-    ans.clear(); //clear global array, make to sure that no garbage value is present in it
+vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> ans;
 
-    target = required_target; // give target what he wants 
-    vector<int> op; // op array to try all possible combination
-    sort(candidates.begin(),candidates.end()); // sort the array in ascending order
-    solveRec(candidates, 0, 0, op); // call function
+    vector<int> temp; // to test the combinations
 
-    return ans; // return the final answer array
+    sort(candidates.begin(), candidates.end());
+    solve(candidates, 0, target, temp, ans); // i->0, sum->0
+
+    return ans;
 }
 int main() {
 

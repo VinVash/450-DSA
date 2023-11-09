@@ -44,7 +44,7 @@ vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections)
 	vector<int> vis(n, 0);
 	int tin[n];
 	int low[n];
-	vector<vectorint>> bridges;
+	vector<vector<int>> bridges;
 
 	dfs(0, -1, vis, adj, tin, low, bridges);
 

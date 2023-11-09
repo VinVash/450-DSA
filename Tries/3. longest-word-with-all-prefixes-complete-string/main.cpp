@@ -53,17 +53,16 @@ public:
 
     bool checkIfAllPrefixExists(string word) {
         Node *node = root;
-        bool flag = true; 
         for(int i = 0;i<word.size();i++) {
             if(node->containsKey(word[i])) {
                 node = node->get(word[i]); 
-                flag = flag & node->isEnd(); 
+                if(node->isEnd() == false) return false;
+            } else {
+                return false;
             }
-            else {
-                return false; 
-            } 
         }
-        return flag; 
+
+        return true;
     }
 };
 
@@ -77,7 +76,7 @@ string completeString(int n, vector<string> &a){
             if(word.size() > longest.size()) {
                 longest = word; 
             }
-            else if(word.size() == longest.size() && word < longest) {
+            else if(word.size() == longest.size() && word < longest) { // word < longest, since we need lexographically smallest string.
                 longest = word; 
             }
         }

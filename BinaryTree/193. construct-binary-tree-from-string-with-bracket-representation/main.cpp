@@ -73,12 +73,12 @@ int findIndex(string str, int l, int r)
 	return -1; // if the closing index hasn't been found till now.
 }
 
-Node *treeFromString(string str, int l, int r)
+Node* treeFromString(string str, int l, int r)
 {
 	if (l > r)
 		return nullptr;
 
-	Node *root = new Node(str[l] - '0');
+	Node* root = new Node(str[l] - '0');
 
 	int index = -1; // for the closing bracket.
 	// If only one element is present, then index will remain -1
