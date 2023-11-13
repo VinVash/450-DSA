@@ -21,7 +21,7 @@ void dfs(int node, int parent, vector<int>& vis, int tin[], int low[], vector<in
 		if(it == parent) continue;
 
 		if(!vis[it]) {
-			dfs(it, node, vis, tim, low, mark, adj);
+			dfs(it, node, vis, adj, tin, low, mark);
 			low[node] = min(low[node], low[it]);
 
 			if(low[it] >= tin[node] && parent != -1) {

@@ -48,14 +48,14 @@ bool isBipartite(int V, vector<int> adj[]) {
 
 /* DFS Approach*/
 
-bool dfs(int node, int col, vector<int>& color, vector<int> adj[]) {
-	color[node] = col;
+bool dfs(int node, int cl, vector<int>& color, vector<int> adj[]) {
+	color[node] = cl;
 
 	for(auto adjNode: adj[node]) {
 		if(color[adjNode] == -1) {
-			if(dfs(adjNode, !col, color, adj) == false)
+			if(dfs(adjNode, !cl, color, adj) == false)
 				return false;
-		} else if(color[adjNode] == col) {
+		} else if(color[adjNode] == cl) {
 			return false;
 		}
 	}

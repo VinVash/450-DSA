@@ -34,7 +34,6 @@ bool dfs(int node, vector<int>& vis, vector<int>& pathVis, vector<int> adj[], ve
 vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
 	vector<int> vis(V, 0);
 	vector<int> pathVis(V, 0);
-
 	vector<int> check(V, 0);
 
 	for(int i = 0; i < V; i++) {
