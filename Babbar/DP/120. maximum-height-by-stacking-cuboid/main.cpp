@@ -15,7 +15,7 @@ int solveTabSO(int n, vector<vector<int>> &a) {
 		for(int prev=curr-1; prev >= -1; prev--) {
 			// include
 			int inc = 0;
-			if(prev == -1 || check(a[curr], a[prev]));
+			if(prev == -1 || check(a[curr], a[prev]))
 				inc = a[curr][2] + nextRow[curr+1]; // adding the height of current row cuboid.
 
 			// exclude

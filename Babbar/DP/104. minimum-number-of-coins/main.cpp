@@ -44,20 +44,23 @@ int solveMem(vector<int> coins, int amount, vector<int>& dp) {
 
 // O(x * n) x -> amount, n -> no. of coins.
 int solveTab(vector<int> coins, int amount) {
-    vector<int> dp(amount+1, INT_MAX);
-    dp[0] = 0;
+    vector<int> dp(amount+1, 0);
 
     for(int i = 1; i <= amount; i++) {
+        int mini = INT_MAX;
         for(int j = 0; j < coins.size(); j++) {
-            if(i - coins[j] >= 0 && dp[i - coins[j]] != INT_MAX) {
-                int ans = dp[i - coins[j]];
-                dp[i] = min(ans+1, dp[i]);
-            }
+            int ans = INT_MAX;
+            if(i - coins[j] >= 0)
+                ans = dp[i - coins[j]];
+
+            if(ans != INT_MAX)
+                mini = min(mini, 1 + ans);
+
         }
+
+        dp[i] = mini;
     }
 
-    if(dp[amount] == INT_MAX)
-        return -1;
     return dp[amount];
 }
 

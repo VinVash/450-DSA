@@ -44,30 +44,30 @@ int solveMem(vector<int> &weight, vector<int> &value, int index, int W, vector<v
 	return dp[index][W];
 }
 
-int solveTab(vector<int> &weight, vector<int> &value, int n, int W) {
-	vector<vector<int>> dp(n, vector<int>(W+1, 0));
-
-	for(int i = weight[0]; i <= W; i++) {
-		if(weight[0] <= W)
-			dp[0][i] = value[0];
-		else
-			dp[0][i] = 0;
-	}
-
-	for(int index = 1; index < n; index++) {
-		for(int w = 0; w <= W; w++) {
-			int inc, exc;
-
-			if(weight[index] <= w)
-				inc = value[index] + dp[index-1][w - weight[index]];
-
-			exc = 0 + dp[index-1][w];
-
-			dp[index][w] = max(inc, exc);
-		}
-	}
-
-	return dp[n-1][W];
+int solveTab(int wt[], int val[], int n, int W) {
+    vector<vector<int>> dp(n, vector<int>(W+1, 0));
+    
+    for(int i = wt[0]; i <= W; i++) {
+        if(wt[0] <= W)
+            dp[0][i] = val[0];
+        else
+            dp[0][i] = 0;
+    }
+    
+    for(int index = 1; index < n; index++) {
+        for(int w = 0; w <= W; w++) {
+            int inc = 0, exc = 0;
+            
+            if(wt[index] <= w)
+                inc = val[index] + dp[index-1][w - wt[index]];
+                
+            exc = 0 + dp[index-1][w];
+            
+            dp[index][w] = max(inc, exc);
+        }
+    }
+    
+    return dp[n-1][W];
 }
 
 int solveTabSO(vector<int> &weight, vector<int> &value, int n, int W) {

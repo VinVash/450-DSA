@@ -87,6 +87,7 @@ int solveTabSO(int n, vector<int> &days, vector<int> &cost) {
 		month.push(make_pair(day, ans + cost[2]));
 
 		// step 3: update the ans.
+		// week.front() and month.front() contain the day where the user last bought the pass.
 		ans = min(ans + cost[0], min(week.front().second, month.front().second));
 	}
 

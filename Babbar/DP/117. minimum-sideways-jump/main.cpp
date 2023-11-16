@@ -56,6 +56,8 @@ int solveTab(vector<int> &obstacles) {
 	dp[2][n] = 0;
 	dp[3][n] = 0;
 
+	// First, we will process a full step / index / position, rather than processing a full lane first.
+	// That's why outer for loop is for currpos, and inner is for currlane.
 	for(int currpos=n-1; currpos >= 0; currpos--) {
 		for(int currlane=1; currlane <= 3; currlane++) {
 
