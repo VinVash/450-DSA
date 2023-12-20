@@ -33,15 +33,11 @@ void inorderIterative(Node *node)
     stack<Node *> stk;
     Node *p = node;
 
-    while (p != nullptr || !stk.empty())
-    {
-        if (p != nullptr)
-        {
+    while (p || !stk.empty()) {
+        if (p) {
             stk.push(p);
             p = p->left;
-        }
-        else
-        {
+        } else {
             p = stk.top();
             stk.pop();
             cout << p->data << " ";

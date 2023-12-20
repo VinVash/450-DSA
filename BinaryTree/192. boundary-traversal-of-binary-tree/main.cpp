@@ -4,12 +4,12 @@ using namespace std;
 void printLeaves(Node *node, vector<int> &res) {
     if(node == nullptr)
         return;
+
+    if(!node->left && !node->right)
+        res.push_back(node->data);
         
     printLeaves(node->left, res);
     printLeaves(node->right, res);
-    
-    if(!node->left && !node->right)
-        res.push_back(node->data);
 }
 
 void printLeftBoundary(Node *node, vector<int> &res) {

@@ -73,28 +73,39 @@ int findIndex(string str, int l, int r)
 	return -1; // if the closing index hasn't been found till now.
 }
 
-Node* treeFromString(string str, int l, int r)
-{
-	if (l > r)
-		return nullptr;
+Node* solve(string s, int l, int r) {
+    if(l > r)
+        return NULL;
+    
+    int rootLength = 0;
+    string rootStr;
+    for(int i = l; i <= r; i++) {
+        if(s[i] == '(')
+            break;
+        rootLength++;
+        rootStr += s[i];
+    }
+        
+    Node* root = new Node(stoi(rootStr));
+    
+    int idx = -1;
+    if(l+rootLength <= r && s[l+rootLength] == '(')
+        idx = findIndex(s, l+rootLength, r);
+        
+    if(idx != -1) {
+        root->left = solve(s, l+rootLength+1, idx-1);
+        root->right = solve(s, idx+2, r-1);
+    }
+    
+    return root;
+    
+}
 
-	Node* root = new Node(str[l] - '0');
-
-	int index = -1; // for the closing bracket.
-	// If only one element is present, then index will remain -1
-	// even after the next if statement, therefore,
-	// only root will be returned with its left and right nodes as null.
-
-	if (l + 1 <= r && str[l + 1] == '(')
-		index = findIndex(str, l + 1, r);
-
-	if (index != -1)
-	{
-		root->left = treeFromString(str, l + 2, index - 1);
-		root->right = treeFromString(str, index + 2, r - 1);
-	}
-
-	return root;
+Node *treeFromString(string str) {
+    
+    int n = str.size();
+    
+    return solve(str, 0, n-1);
 }
 
 int main()

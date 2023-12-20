@@ -6,51 +6,51 @@ struct Node {
 	Node *left, *right;
 };
 
-void inorderIterative(Node *root, vector<int> &res) {
-	if(root == nullptr)
-		return;
-
-	stack<Node *> stk;
-	Node *p = root;
-
-	while(p || stk.size()) {
-		if(p) {
-			stk.push_back(p->data);
-			p = p->left;
-		} else {
-			p = stk.top();
-			stk.pop();
-			res.push_back(p->data);
-			p = p->right;
-		}
-	}
+void inorderTraversal(vector<int>& A, vector<int>& result, int i, int n) {
+    if (i < n) {
+        inorderTraversal(A, result, 2 * i + 1, n); // Visit left child
+        result.push_back(A[i]); // Visit node
+        inorderTraversal(A, result, 2 * i + 2, n); // Visit right child
+    }
 }
 
-int minSwaps(vector<int> &nums) {
-	int n = nums.size();
-	int ans = 0;
+int minSwapsToSort(vector<int>& A) {
+    
+    int n = A.size();
+    vector<pair<int, int>> arrPos;
+    for (int i = 0; i < n; i++) {
+        arrPos.push_back({A[i], i});
+    }
+    sort(arrPos.begin(), arrPos.end());
 
-	vector<int> temp(nums.begin(), nums.end());
-	sort(temp.begin(), temp.end());
+    vector<bool> visited(n, false);
+    int ans = 0;
 
-	unordered_map<int, int> h;
-	for(int i = 0; i < n; i++)
-		h[arr[i]] = i; // positions of elements in original array.
+    for (int i = 0; i < n; i++) {
+        if (visited[i] || arrPos[i].second == i)
+            continue;
 
-	for(int i = 0; i < n; i++) {
-		if(arr[i] != temp[i]) {
-			ans++;
-			int initial = arr[i];
+        int cycle_size = 0;
+        int j = i;
+        while (!visited[j]) {
+            visited[j] = true;
+            j = arrPos[j].second;
+            cycle_size++;
+        }
 
-			swap(arr, i, h[temp[i]]);
+        if (cycle_size > 0) {
+            ans += (cycle_size - 1);
+        }
+    }
 
-			h[initial] = h[temp[i]];
-			h[temp[i]] = i;
-		}
-	}
-
-	return ans;
+    return ans;
 }
+
+int minSwaps(vector<int>&A, int n){
+    vector<int> inorder;
+    inorderTraversal(A, inorder, 0, A.size()); // get the inorder traversal
+    return minSwapsToSort(inorder); // find min swaps to sort this (inorder) array
+    }
 
 int main() {
 

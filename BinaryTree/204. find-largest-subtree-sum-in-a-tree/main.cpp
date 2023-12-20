@@ -11,25 +11,26 @@ struct Node {
 	}
 };
 
-int findLargestSubtreeSumUtil(Node *node, int &ans) {
-	if(node == nullptr) return 0;
-
-	int currSum = node->data + findLargestSubtreeSumUtil(node->left, ans) + findLargestSubtreeSumUtil(node->right, ans);
-
-	ans = max(ans, currSum);
-
-	return currSum; // returning the sum of the subtree.
+int solve(Node* node, int& ans) {
+    if(node == NULL)
+        return 0;
+        
+    int curr = node->data + solve(node->left, ans) + solve(node->right, ans);
+    
+    ans = max(ans, curr);
+    
+    return curr;
 }
 
-int findLargestSubtreeSum(Node *root) {
-	if(root == nullptr)
-		return 0;
-
-	int ans = INT_MIN;
-
-	findLargestSubtreeSumUtil(root, ans);
-
-	return ans;
+int findLargestSubtreeSum(Node* root) {
+    if(root == NULL)
+        return 0;
+    
+    int ans = INT_MIN;
+    
+    solve(root, ans);
+    
+    return ans;
 }
 
 int main() {

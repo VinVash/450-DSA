@@ -13,33 +13,26 @@ struct Node {
 	}
 };
 
-unordered_set<string> subtrees;
+unordered_map<string, int> mp;
 
-string duplicateSubtreesUtil(Node *node) {
-	string s = "";
+string serialize(Node *root) {
+    if (!root) return "#";
 
-	if(!node)
-		return s + '$';
+    string s = "(" + serialize(root->left) + to_string(root->data) + serialize(root->right) + ")";
+    mp[s]++;
+    return s;
+}
 
-	string lStr = duplicateSubtreesUtil(node->left);
-	if(lStr.compare("") == 0)
-		return s;
+int dupSub(Node *root) {
+    mp.clear();
+    serialize(root);
 
-	string rStr = duplicateSubtreesUtil(node->right);
-	if(rStr.compare("") == 0)
-		return s;
+    for (auto it = mp.begin(); it != mp.end(); it++) {
+        if (it->second >= 2 && it->first.size() > 3)
+            return 1;
+    }
 
-	// Since the size of hash of leaf node will be 3, therefore we would need to
-	// search for subtrees which have hash size greater than 3, because leaf nodes
-	// are not considered as subtrees.
-	s = s + node->key + lStr + rStr;
-
-	if(s.size() > 3 && subtrees.find(s) != subtrees.end())
-		return "";
-
-	subtrees.insert(s);
-
-	return s;
+    return 0;
 }
 
 int main() {

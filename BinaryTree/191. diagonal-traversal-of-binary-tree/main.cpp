@@ -13,7 +13,7 @@ Node *newNode(int val) {
 	return node;
 }
 
-vector<vector<int>> res;
+vector<vector<int>> ans;
 void diagonalTraversal(Node *root) {
 	if(root == nullptr)
 		return;
@@ -23,25 +23,25 @@ void diagonalTraversal(Node *root) {
 
 	while(!q.empty()) {
 		int n = q.size();
-		vector<int> ans;
+		vector<int> temp;
 
 		while(n) { // repeat n times.
-			Node *temp = q.front();
+			Node *t = q.front();
 			q.pop();
 
-			while(temp) {
-				ans.push_back(temp->data);
+			while(t) {
+				temp.push_back(t->data);
 
-				if(temp->left)
-					q.push(temp->left);
+				if(t->left)
+					q.push(t->left);
 
-				temp = temp->right;
+				t = t->right;
 			}
 
 			n--;
 		}
 
-		res.push_back(ans);
+		ans.push_back(temp);
 	}
 }
 

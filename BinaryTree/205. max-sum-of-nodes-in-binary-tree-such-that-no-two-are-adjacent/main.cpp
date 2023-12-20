@@ -11,23 +11,30 @@ struct Node {
 	}
 };
 
-unordered_map<Node*, int> umap;
+unordered_map<Node*, int> mp;
 
-int maxSum(Node* node) {
-	if(node == nullptr) return 0;
+int solve(Node* node) {
+    if(node == NULL)
+        return 0;
+    if(mp[node])
+        return mp[node];
+        
+    int inc = node->data;
+    if(node->left)
+        inc += solve(node->left->left) + solve(node->left->right);
+    if(node->right)
+        inc += solve(node->right->left) + solve(node->right->right);
+        
+    int exc = solve(node->left) + solve(node->right);
+    
+    mp[node] = max(inc, exc);
+    return mp[node];
+    
+}
 
-	if(umap[node]) return umap[node];
-
-	int inc = node->data; // initialise the included sum to the node->data, then add the maxSum of its grandchildren.
-	if(node->left)
-		inc += maxSum(node->left->left) + maxSum(node->left->right);
-	if(node->right)
-		inc += maxSum(node->right->left) + maxSum(node->right->right);
-
-	int exc = maxSum(node->left) + maxSum(node->right);
-
-	umap[node] = max(inc, exc);
-	return umap[node];
+int getMaxSum(Node *root) {
+    
+    return solve(root);
 }
 
 int main() {

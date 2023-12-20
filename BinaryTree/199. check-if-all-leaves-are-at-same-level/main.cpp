@@ -1,30 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool checkUtil(Node *node, int level, int *leafLevel) {
-	if(node == nullptr) return true;
-
-	// if current node is leaf.
-	if(!node->left && !node->right) {
-		
-		// update the leaflevel initially.
-		if(*leafLevel == 0) {
-			*leafLevel = level;
-			return true;
-		}
-
-		// check if level and leaflevel is same.
-		return (level == *leafLevel);
-	}
-
-	return checkUtil(node->left, level+1, leafLevel) && checkUtil(node->right, level+1, leafLevel);
+bool solve(Node* node, int currLevel, int& leafLevel) {
+    if(node == NULL)
+        return true;
+    
+    if(node->left == NULL && node->right == NULL) {
+        
+        // update leafLevel initially.
+        if(leafLevel == 0) {
+            leafLevel = currLevel;
+            return true;
+        }
+        
+        return (currLevel == leafLevel);
+    }
+    
+    return solve(node->left, currLevel+1, leafLevel) && solve(node->right, currLevel+1, leafLevel);
 }
 
 bool check(Node *root) {
-	int leafLevel = 0;
-	int level = 0;
-
-	return checkUtil(root, level, leafLevel);
+    int leafLevel = 0;
+    
+    return solve(root, 0, leafLevel);
+    
 }
 
 int main() {

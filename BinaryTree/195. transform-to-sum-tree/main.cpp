@@ -1,19 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int toSumTree2(Node *node) {
+int solve(Node *node) {
 	if(!node) return 0; // returning for leaf nodes call.
 
 	int old_val = node->data;
 
-	node->data = toSumTree2(node->left) + toSumTree2(node->right);
+	node->data = solve(node->left) + solve(node->right);
 
 	return node->data + old_val;
 }
   
     
 void toSumTree(Node *node) {
-    toSumTree2(node);
+    solve(node);
 }
 
 int main() {

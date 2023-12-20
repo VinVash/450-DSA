@@ -11,7 +11,7 @@ struct Node {
 	}
 };
 
-void sumOfLongRootToLeafPath(Node *node, int sum, int len, int &max_len, int &max_sum) {
+void solve(Node *node, int sum, int len, int &max_len, int &max_sum) {
 	if(node == nullptr) { // means we have traversed from root to the leaf path.
 
 		if(len > max_len) {
@@ -23,8 +23,8 @@ void sumOfLongRootToLeafPath(Node *node, int sum, int len, int &max_len, int &ma
 		return;
 	}
 
-	sumOfLongRootToLeafPath(node->left, sum + node->data, len+1, max_len, max_sum);
-	sumOfLongRootToLeafPath(node->right, sum + node->data, len+1, max_len, max_sum);
+	solve(node->left, sum + node->data, len+1, max_len, max_sum);
+	solve(node->right, sum + node->data, len+1, max_len, max_sum);
 }
 
 int main() {
@@ -45,7 +45,7 @@ int main() {
 
     int max_sum = INT_MIN, max_len = 0;
   
-    sumOfLongRootToLeafPath(root, 0, 0, max_len, max_sum);
+    solve(root, 0, 0, max_len, max_sum);
     cout << max_sum << endl;
 
 	return 0;
