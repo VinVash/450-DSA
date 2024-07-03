@@ -26,7 +26,7 @@ int solveMem(vector<int> cost, int i, vector<int>& dp) {
 
 int solveTab(vector<int> cost) {
     int n = cost.size();
-    vector<int> dp(n+2);
+    vector<int> dp(n+2, 0);
     dp[n] = 0;
     dp[n+1] = 0;
 
