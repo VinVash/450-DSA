@@ -1,0 +1,45 @@
+Loading resources...
+Allocating PlayerTexture.png
+Copying PlayerTexture.png to Heap
+Freeing PlayerTexture.png
+Allocating EnemyTexture.png
+Copying EnemyTexture.png to Heap
+Freeing EnemyTexture.png
+Requesting player_tex
+Found! 
+Resource PlayerTexture.png (50) MB
+------- Manager status -------
+Key: enemy_tex | Ref count: 1
+Key: player_tex | Ref count: 2
+------------------------
+Requesting: background_music
+Safe failure: Resource: background_music is missing (nullopt)
+Creating a temporary owner scope
+------- Manager status -------
+Key: enemy_tex | Ref count: 2
+Key: player_tex | Ref count: 2
+------------------------
+Left temporary scope
+------- Manager status -------
+Key: enemy_tex | Ref count: 1
+Key: player_tex | Ref count: 2
+------------------------
+---------------------------
+1. Creating unique_ptr 'task1'...
+  [Created] Task: Backup Data
+  -> Running Backup Data...
+
+2. Moving ownership from 'task1' to 'task2'...
+  (task1 is now empty/null)
+  (task2 now owns the object)
+  -> Running Backup Data...
+
+3. Moving 'task2' into a function...
+Inside process_task function:
+  -> Running Backup Data...
+Exiting process_task function (Task will die here)...
+  [Destroyed] Task: Backup Data
+
+4. Back in main (task2 is now empty)...
+Freeing EnemyTexture.png
+Freeing PlayerTexture.png

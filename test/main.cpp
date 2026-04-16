@@ -1,65 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define vi vector<int>
-#define vll vector<long long>
-#define vvi vector<vector<int>>
-#define vvll vector<vector<long long>>
-typedef long long ll;
 
+void solve() {    
+}
+
+struct Node {
+    int val;
+
+    vector<shared_ptr<Node>> neighbors;
+
+    Node(int _val) : val(_val) {
+        cout << "Constructed node " << val << endl;
+    }
+
+    ~Node() {
+        cout << "Destroyed Node" << val << endl;
+    }
+};
+
+class GraphCloner {
+private:
+    unordered_map<Node*, shared_ptr<Node>> vis;
+
+public:
+    shared_ptr<Node> cloneGraph(shared_ptr<Node> node) {
+        if(!node) return nullptr;
+
+        if(vis.find(node.get()) != vis.end()) {
+            return vis[node.get()];
+        }
+
+        shared_ptr<Node> newNode = make_shared<Node>(node->val);
+
+        vis[node.get()] = newNode;
+
+        for(const auto& neighbor: node->neighbors) {
+            newNode->neighbors.push_back(cloneGraph(neighbor));
+        }
+
+        return newNode;
+    }
+}
+
+// we can fix the cycles by making the "back-pointers" into std::weak_ptr
+// "back-pointers" are arrows that close the loop / complete the cycle.
 
 
 int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
 
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
 
-    int n;
-    cin >> n;
-    vector<pair<int, int>> requests(n);
-    for(int i=0; i<n; i++) {
-        cin >> requests[i].first >> requests[i].second;
-    }
 
-    int max_packets, rate;
-    cin >> max_packets >> rate;
-
-    // sort the requests by time
-    sort(requests.begin(), requests.end());
-
-    // priority queue to store the packets
-    priority_queue<int> pq;
-    int dropped = 0, prev_time = 0;
-
-    for(auto& req : requests) {
-        // deliver packets before current request arrives
-        while(!pq.empty() && prev_time < req.first) {
-            int deliver = min(rate, (int)pq.size());
-            for(int i=0; i<deliver; i++) pq.pop();
-            prev_time++;
-        }
-
-        // add current request's packets into the queue
-        for(int i=0; i<req.second; i++) pq.push(1);
-
-        // if the queue size exceeds max_packets, count the excess packets as dropped
-        while((int)pq.size() > max_packets) {
-            pq.pop();
-            dropped++;
-        }
-
-        prev_time = req.first;
-    }
-
-    // deliver remaining packets
-    while(!pq.empty()) {
-        int deliver = min(rate, (int)pq.size());
-        for(int i=0; i<deliver; i++) pq.pop();
-        prev_time++;
-    }
-
-    cout << dropped << endl;
 
 
     return 0;

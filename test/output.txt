@@ -1,1 +1,5 @@
-0
+2
+Current use count: 3
+Value: 100
+2
+2

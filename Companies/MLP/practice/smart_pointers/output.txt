@@ -1,0 +1,4 @@
+Foo ctor: 42, hello
+Thread 1 done
+Foo dtor
+Thread 2 reset its copy
